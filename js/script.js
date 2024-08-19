@@ -55,6 +55,15 @@ tg.MainButton.onClick(function () {
 		tg.BackButton.show();
 		tg.MainButton.setText(`КУПИТИ ${total__price}`);
 
+		const add = document.querySelectorAll(".cart .add");
+		const remove = document.querySelectorAll(".cart .remove");
+		add.forEach(button => {
+			button.addEventListener("click", addProduct);
+		});
+		remove.forEach(button => {
+			button.addEventListener("click", removeProduct);
+		})
+
 	} else if (tg.MainButton.text.startsWith("КУПИТИ")) {
 		tg.close();
 	}
