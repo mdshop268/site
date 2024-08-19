@@ -6,7 +6,7 @@ const sample = (id, name, term, price, realprice) => {
 	return `
 <div class="product" id="${id}">
     <div class="wrap">
-        <img src="./images/${name}/${file}.webp" alt="${name}" class="product__img">
+        <img src="./images/${name}/${file}.png" alt="${name}" class="product__img">
 
         <div class="product__info">
             <p class="product__name">${name}</p>
@@ -31,8 +31,8 @@ const sample = (id, name, term, price, realprice) => {
 }
 
 const changeOption = (e) => {
-	const product = e.target.closest('.product');
-	const term = e.target.value;
+	const product = e.currentTarget.closest('.product');
+	const term = e.currentTarget.value;
 	
 	const price = product.querySelector('.product__price');
 	const realprice = product.querySelector('.product__realprice');
@@ -49,14 +49,12 @@ const changeOption = (e) => {
 
 const addToCart = (e) => {
 	const product = e.currentTarget.parentElement;
+	e.currentTarget.style.display = "none"; product.querySelector(".counter").style.display = "flex";
 	const product__list = document.querySelector(".cart .product__list");
 	const product__term = product.querySelector(".product__term");
 	const term = product__term.selectedOptions[0].innerHTML;
 	const id = product.id + product__term.value;
 	const count = products.get(id);
-
-	e.currentTarget.style.display = "none";
-	product.querySelector(".counter").style.display = "flex";
 	
 	products.set(id, count ? count + 1 : 1);
 	if (count) {

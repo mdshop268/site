@@ -128,7 +128,7 @@ body {
     transform: scale(.96);
 }
 
-.minus, .counter__button .plus {
+.counter__button .minus, .counter__button .plus {
     display: block;
     box-sizing: border-box;
     font-size: 16px;

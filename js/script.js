@@ -35,12 +35,10 @@ tg.MainButton.onClick(function () {
 		const cart = document.querySelector(".cart");
 		const price = document.querySelector(".cart .total__price");
 		const realprice = document.querySelector(".cart .total__realprice");
-		const total__price = Array.from(products.keys())
+		price.innerHTML = Array.from(products.keys())
 			.reduce(function (sum, product) {
 				return sum + PRICES[product]["price"] * products.get(product);
 			}, 0) + "₴";
-		
-		price.innerHTML = total__price;
 		realprice.innerHTML = Array.from(products.keys())
 			.reduce(function (sum, product) {
 				return sum + PRICES[product]["realprice"] * products.get(product);
@@ -56,7 +54,7 @@ tg.MainButton.onClick(function () {
 		
 		tg.BackButton.show();
 		tg.MainButton.setText(`КУПИТИ ${total__price}`);
-		
+
 	} else if (tg.MainButton.text.startsWith("КУПИТИ")) {
 		tg.close();
 	}
