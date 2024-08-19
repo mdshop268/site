@@ -1,0 +1,115 @@
+.cart header, .cart main {
+    padding: 5px 14px;
+}
+
+.cart header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#title {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 33px;
+}
+
+#clear {
+    color: var(--tg-theme-text-color, white);
+    font-size: 16px;
+    line-height: 20px;
+}
+
+.cart .product__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart .product {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--tg-theme-text-color-15);
+}
+
+.wrap {
+    display: flex;
+}
+
+.cart .product__img {
+    display: inline-block;
+    background-color: var(--tg-theme-hint-color-08);
+    background-color: var(--tg-theme-bg-color, black);
+    width: 90px;
+    height: 90px;
+    margin-right: 16px;
+    border-radius: 15px;
+    border: 1px solid var(--tg-theme-hint-color-15);
+    box-shadow: 0 2px 8px var(--tg-theme-text-color-08),
+                0 2px 1px var(--tg-theme-text-color-04);
+}
+
+.cart .product__info {
+    display: flex;
+    flex-direction: column;
+    margin-right: 8px;
+}
+
+.cart .product__name {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 16px;
+    margin-bottom: 6px;
+}
+
+.cart .product__term {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: var(--tg-theme-text-color);
+    margin-bottom: 16px;
+}
+
+.wrap__price {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.cart .product__price {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    min-width: 60px;
+    text-align: right;
+}
+
+.cart .product__realprice {
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--tg-theme-hint-color, gray);
+    text-decoration: line-through;
+    margin-top: 4px;
+}
+
+.total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    line-height: 16px;
+    margin-top: 16px;
+}
+
+.total__price {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.total__realprice {
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--tg-theme-hint-color, gray);
+    margin-right: 8px;
+    text-decoration: line-through;
+}
