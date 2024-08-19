@@ -40,3 +40,16 @@ const addProduct = (e) => {
 	item.querySelector(".product__realprice")
 		.innerHTML = PRICES[id]["realprice"] * (count + 1) + "₴";
 };
+
+const removeProduct = () => {
+
+};
+
+const add = document.querySelectorAll(".cart .add");
+const remove = document.querySelectorAll(".cart .remove");
+add.forEach(button => {
+	button.addEventListener("click", addProduct);
+});
+remove.forEach(button => {
+	button.addEventListener("click", removeProduct);
+})
