@@ -35,10 +35,12 @@ tg.MainButton.onClick(function () {
 		const cart = document.querySelector(".cart");
 		const price = document.querySelector(".cart .total__price");
 		const realprice = document.querySelector(".cart .total__realprice");
-		price.innerHTML = Array.from(products.keys())
+		const total__price = Array.from(products.keys())
 			.reduce(function (sum, product) {
 				return sum + PRICES[product]["price"] * products.get(product);
 			}, 0) + "₴";
+
+		price.innerHTML = total__price;
 		realprice.innerHTML = Array.from(products.keys())
 			.reduce(function (sum, product) {
 				return sum + PRICES[product]["realprice"] * products.get(product);
@@ -58,6 +60,8 @@ tg.MainButton.onClick(function () {
 		const add = document.querySelectorAll(".cart .add");
 		const remove = document.querySelectorAll(".cart .remove");
 		add.forEach(button => {
+			console.log(button);
+			console(addProduct);
 			button.addEventListener("click", addProduct);
 		});
 		remove.forEach(button => {

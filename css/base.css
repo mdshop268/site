@@ -14,6 +14,8 @@ img {
 
 a {
     color: var(--tg-theme-button-color, #6f22ff);
+    -webkit-text-stroke-color: var(--tg-theme-text-color, white);
+    -webkit-text-stroke-width: .3px;
     font-weight: 600;
     text-decoration: none;
 }
