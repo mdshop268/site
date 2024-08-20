@@ -59,8 +59,6 @@ tg.MainButton.onClick(function () {
 		add.forEach(button => {
 			console.log(button);
 			button.addEventListener("click", (e) => {
-				products.set(id, count + 1);
-			
 				const product = e.currentTarget.parentElement;
 				const product__list = document.querySelector(".cart .product__list");
 				const product__term = product.querySelector(".product__term");
@@ -68,6 +66,7 @@ tg.MainButton.onClick(function () {
 				const count = products.get(id);
 				const price = document.querySelector(".cart .total__price");
 				const realprice = document.querySelector(".cart .total__realprice");
+				products.set(id, count + 1);
 				const total__price = Array.from(products.keys())
 				.reduce(function (sum, product) {
 					return sum + PRICES[product]["price"] * products.get(product);
