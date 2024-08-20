@@ -20,13 +20,13 @@ const addProduct = (e) => {
 	const realprice = document.querySelector(".cart .total__realprice");
 	products.set(product.id, count + 1);
 	const total__price = Array.from(products.keys())
-	.reduce(function (sum, product) {
-		return sum + PRICES[product]["price"] * products.get(product);
+	.reduce(function (sum, p) {
+		return sum + PRICES[p]["price"] * products.get(p);
 	}, 0) + "₴";
 	price.innerHTML = total__price;
 	realprice.innerHTML = Array.from(products.keys())
-	.reduce(function (sum, product) {
-		return sum + PRICES[product]["realprice"] * products.get(product);
+	.reduce(function (sum, p) {
+		return sum + PRICES[p]["realprice"] * products.get(p);
 	}, 0) + "₴";
 	
 	let item = product__list.querySelector(`[id="${product.id}"]`);
