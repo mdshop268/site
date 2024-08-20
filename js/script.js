@@ -1,66 +1,92 @@
 const tg = window.Telegram.WebApp;
 
 window.onload = function () {
-	tg.ready();
-	tg.expand();
-	
-	// tg.CloudStorage.getItem(key, func(err, res));
+    tg.ready();
+    tg.expand();
 };
 
-tg.BackButton.onClick(function () {
-	const shop = document.querySelector(".shop");
-	const cart = document.querySelector(".cart");
-	
-	shop.classList.add("enable");
-	cart.classList.add("disable");
-	shop.style.display = "block";
-	
-	setTimeout(() => {
-		cart.classList.remove("disable");
-		cart.style.display = "none";
-	}, animation);
-	
-	tg.BackButton.hide();
-	tg.MainButton.setText(`КОШИК (${products.size})`);
-});
+// Обработка клика на кнопку "Назад"
+const handleBackButtonClick = () => {
+    const shop = document.querySelector(".shop");
+    const cart = document.querySelector(".cart");
 
-tg.MainButton.onClick(function () {
-	if (tg.MainButton.text.startsWith("КОШИК")) {
-		const shop = document.querySelector(".shop");
-		const cart = document.querySelector(".cart");
-		const price = document.querySelector(".cart .total__price");
-		const realprice = document.querySelector(".cart .total__realprice");
-		const total__price = Array.from(products.keys())
-			.reduce(function (sum, product) {
-				return sum + PRICES[product]["price"] * products.get(product);
-			}, 0) + "₴";
+    toggleDisplay(shop, cart, true);
 
-		price.innerHTML = total__price;
-		realprice.innerHTML = Array.from(products.keys())
-			.reduce(function (sum, product) {
-				return sum + PRICES[product]["realprice"] * products.get(product);
-			}, 0) + "₴";
-		
-		shop.classList.add("disable");
-		cart.classList.add("enable");
-		cart.style.display = "block";
-		setTimeout(() => {
-			shop.style.display = "none";
-			shop.classList.remove("disable");
-		}, animation);
-		
-		const add = document.querySelectorAll(".cart .add");
-		const remove = document.querySelectorAll(".cart .remove");
-		add.forEach(button => {
-			button.addEventListener("click", addProduct)
-		});
-		remove.forEach(button => {
-			button.addEventListener("click", removeProduct);
-		});
+    tg.BackButton.hide();
+    updateMainButtonText();
+};
 
-		tg.BackButton.show();
-		tg.MainButton.setText(`КУПИТИ ${total__price}`);
-	} else if (tg.MainButton.text.startsWith("КУПИТИ")) {
-		tg.close();
-	}
-});
+// Обновление текста основной кнопки
+const updateMainButtonText = () => {
+    const totalPrice = calculateTotalPrice();
+    tg.MainButton.setText(`КОШИК (${products.size})`);
+    if (totalPrice > 0) {
+        tg.MainButton.setText(`КУПИТИ ${totalPrice}₴`);
+    }
+};
+
+// Переключение видимости элементов shop и cart
+const toggleDisplay = (showElement, hideElement, showBackButton = false) => {
+    showElement.classList.add("enable");
+    hideElement.classList.add("disable");
+    showElement.style.display = "block";
+
+    setTimeout(() => {
+        hideElement.classList.remove("disable");
+        hideElement.style.display = "none";
+    }, animation);
+
+    if (showBackButton) {
+        tg.BackButton.show();
+    }
+};
+
+// Расчет общей суммы корзины
+const calculateTotalPrice = () => {
+    return Array.from(products.keys()).reduce((sum, product) => {
+        return sum + PRICES[product].price * products.get(product);
+    }, 0);
+};
+
+// Обновление итоговых цен в корзине
+const updateCartPrices = () => {
+    const totalPriceElement = document.querySelector(".cart .total__price");
+    const totalRealPriceElement = document.querySelector(".cart .total__realprice");
+
+    const totalPrice = calculateTotalPrice();
+    const totalRealPrice = Array.from(products.keys()).reduce((sum, product) => {
+        return sum + PRICES[product].realprice * products.get(product);
+    }, 0);
+
+    totalPriceElement.innerHTML = `${totalPrice}₴`;
+    totalRealPriceElement.innerHTML = `${totalRealPrice}₴`;
+};
+
+// Обработка клика на главную кнопку
+const handleMainButtonClick = () => {
+    if (tg.MainButton.text.startsWith("КОШИК")) {
+        const shop = document.querySelector(".shop");
+        const cart = document.querySelector(".cart");
+
+        updateCartPrices();
+        toggleDisplay(cart, shop, true);
+
+        const addButtons = document.querySelectorAll(".cart .add");
+        const removeButtons = document.querySelectorAll(".cart .remove");
+
+        addButtons.forEach(button => {
+            button.addEventListener("click", addProduct);
+        });
+
+        removeButtons.forEach(button => {
+            button.addEventListener("click", removeProduct);
+        });
+
+    } else if (tg.MainButton.text.startsWith("КУПИТИ")) {
+        tg.close();
+    }
+};
+
+// Установка обработчиков событий
+tg.BackButton.onClick(handleBackButtonClick);
+tg.MainButton.onClick(handleMainButtonClick);
