@@ -1,10 +1,5 @@
 const tg = window.Telegram.WebApp;
 
-const telegraph = () => {
-	window.location.href = "https://google.com";
-	tg.BackButton.show();
-};
-
 window.onload = function () {
 	tg.ready();
 	tg.expand();
@@ -57,7 +52,6 @@ tg.MainButton.onClick(function () {
 		const add = document.querySelectorAll(".cart .add");
 		const remove = document.querySelectorAll(".cart .remove");
 		add.forEach(button => {
-			console.log(button);
 			button.addEventListener("click", (e) => {
 				const product = e.currentTarget.parentElement;
 				const product__list = document.querySelector(".cart .product__list");
