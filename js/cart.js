@@ -19,8 +19,11 @@ const addProduct = (e) => {
 	const price = document.querySelector(".cart .total__price");
 	const realprice = document.querySelector(".cart .total__realprice");
 	products.set(product.id, count + 1);
+	console.log(products);
 	const total__price = Array.from(products.keys())
 	.reduce(function (sum, p) {
+	console.log(PRICES[p]);
+	console.log(PRICES[p]["price"]);
 		return sum + PRICES[p]["price"] * products.get(p);
 	}, 0) + "₴";
 	price.innerHTML = total__price;
