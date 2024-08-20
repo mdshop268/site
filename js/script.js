@@ -54,11 +54,13 @@ tg.MainButton.onClick(function () {
 			shop.classList.remove("disable");
 		}, animation);
 		
+		console.log(1);
 		const add = document.querySelectorAll(".cart .add");
+		console.lot(2);
 		const remove = document.querySelectorAll(".cart .remove");
+		console.lot(3);
 		add.forEach(button => {
 			console.log(button);
-			console(addProduct);
 			button.addEventListener("click", (e) => {
 				products.set(id, count + 1);
 			
@@ -90,12 +92,15 @@ tg.MainButton.onClick(function () {
 				tg.MainButton.setText(`КУПИТИ ${total__price}`);
 			});
 		});
+		console.lot(4);
 		remove.forEach(button => {
 			button.addEventListener("click", removeProduct);
 		});
+		console.lot(5);
 
 		tg.BackButton.show();
 		tg.MainButton.setText(`КУПИТИ ${total__price}`);
+		console.lot(6);
 	} else if (tg.MainButton.text.startsWith("КУПИТИ")) {
 		tg.close();
 	}
