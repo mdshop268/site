@@ -56,9 +56,9 @@ tg.MainButton.onClick(function () {
 		
 		console.log(1);
 		const add = document.querySelectorAll(".cart .add");
-		console.lot(2);
+		console.log(2);
 		const remove = document.querySelectorAll(".cart .remove");
-		console.lot(3);
+		console.log(3);
 		add.forEach(button => {
 			console.log(button);
 			button.addEventListener("click", (e) => {
@@ -92,16 +92,16 @@ tg.MainButton.onClick(function () {
 				tg.MainButton.setText(`КУПИТИ ${total__price}`);
 			});
 		});
-		console.lot(4);
+		console.log(4);
 		remove.forEach(button => {
 			button.addEventListener("click", removeProduct);
 		});
-		console.lot(5);
+		console.log(5);
 
 		tg.BackButton.show();
 		tg.MainButton.setText(`КУПИТИ ${total__price}`);
 		console.lot(6);
 	} else if (tg.MainButton.text.startsWith("КУПИТИ")) {
 		tg.close();
-	}
+	}w
 });
