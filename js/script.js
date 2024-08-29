@@ -13,16 +13,7 @@ const handleBackButtonClick = () => {
     toggleDisplay(shop, cart, true);
 
     tg.BackButton.hide();
-    updateMainButtonText();
-};
-
-// Обновление текста основной кнопки
-const updateMainButtonText = () => {
-    const totalPrice = calculateTotalPrice();
     tg.MainButton.setText(`КОШИК (${products.size})`);
-    if (totalPrice > 0) {
-        tg.MainButton.setText(`КУПИТИ ${totalPrice}₴`);
-    }
 };
 
 // Переключение видимости элементов shop и cart
@@ -82,6 +73,8 @@ const handleMainButtonClick = () => {
             button.addEventListener("click", removeProduct);
         });
 
+		const totalPrice = calculateTotalPrice();
+    	tg.MainButton.setText(`КУПИТИ ${totalPrice}₴`);
     } else if (tg.MainButton.text.startsWith("КУПИТИ")) {
         tg.close();
     }
