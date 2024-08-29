@@ -46,6 +46,8 @@ function setProperty(name, defaultColor, opacity) {
  */
 function createDurationVar(name, time) {
     const timeInSeconds = time / 1000;
+
+	window[name] = time;
     document.documentElement.style.setProperty(`--${name}`, `${timeInSeconds}s`);
 }
 
