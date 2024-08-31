@@ -86,6 +86,6 @@ document.querySelectorAll(".product__term").forEach(selector => {
     selector.addEventListener('change', changeOption);
 });
 
-document.querySelectorAll(".shop .add").forEach(button => {
+document.querySelectorAll(".shop .append, .shop .add").forEach(button => {
     button.addEventListener("click", shopAddProduct);
 });
