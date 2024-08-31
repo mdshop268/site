@@ -52,7 +52,7 @@ const changeOption = (e) => {
 };
 
 // Добавление продукта в корзину
-const addToCart = (e) => {
+const shopAddProduct = (e) => {
     const product = e.currentTarget.closest('.product');
     const productList = document.querySelector(".cart .product__list");
     const productTerm = product.querySelector(".product__term");
@@ -85,5 +85,5 @@ document.querySelectorAll(".product__term").forEach(selector => {
 });
 
 document.querySelectorAll(".shop .add").forEach(button => {
-    button.addEventListener("click", addToCart);
+    button.addEventListener("click", shopAddProduct);
 });

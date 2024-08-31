@@ -66,11 +66,11 @@ const handleMainButtonClick = () => {
         const removeButtons = document.querySelectorAll(".cart .remove");
 
         addButtons.forEach(button => {
-            button.addEventListener("click", addProduct);
+            button.addEventListener("click", cartAddProduct);
         });
 
         removeButtons.forEach(button => {
-            button.addEventListener("click", removeProduct);
+            button.addEventListener("click", cartRemoveProduct);
         });
 
 		const totalPrice = calculateTotalPrice();
