@@ -70,12 +70,12 @@ const shopAddProduct = (e) => {
         item.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count + 1) + "₴";
     } else {
         productList.innerHTML += generateProductHTML(productId, product.id, term, PRICES[productId].price, PRICES[productId].realprice);
+        e.currentTarget.style.display = "none";
+        product.querySelector(".counter").style.display = "flex";
+        
+        if (!tg.MainButton.isVisible) tg.MainButton.show();
     }
-
-    e.currentTarget.style.display = "none";
-    product.querySelector(".counter").style.display = "flex";
-
-    if (!tg.MainButton.isVisible) tg.MainButton.show();
+    
     tg.MainButton.setText(`КОШИК (${products.size})`);
 };
 
