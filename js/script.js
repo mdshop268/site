@@ -68,7 +68,6 @@ const handleMainButtonClick = () => {
         addButtons.forEach(button => {
             button.addEventListener("click", cartAddProduct);
         });
-
         removeButtons.forEach(button => {
             button.addEventListener("click", cartRemoveProduct);
         });

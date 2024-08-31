@@ -54,22 +54,29 @@ const changeOption = (e) => {
 // Добавление продукта в корзину
 const shopAddProduct = (e) => {
     const product = e.currentTarget.closest('.product');
-    const productList = document.querySelector(".cart .product__list");
+    const shopProductList = document.querySelector(".shop .product__list");
+    const cartProductList = document.querySelector(".cart .product__list");
     const productTerm = product.querySelector(".product__term");
     const term = productTerm.selectedOptions[0].innerHTML;
     const productId = product.id + productTerm.value;
-    const count = products.get(productId) || 0;
+    const count = (products.get(productId) || 0) + 1;
 
     // Обновление количества продукта в корзине
-    products.set(productId, count + 1);
+    products.set(productId, count);
 
-    console.log(products.get(productId));
+    console.log(count);
 
     if (count) {
-        const item = productList.querySelector(`[id="${productId}"]`);
-        item.querySelector(".counter__count").innerHTML = count + 1;
-        item.querySelector(".product__price").innerHTML = PRICES[productId].price * (count + 1) + "₴";
-        item.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count + 1) + "₴";
+        const shopItem = shopProductList.querySelector(`[id="${productId}"]`);
+        const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
+
+        shopItem.querySelector(".counter__count").innerHTML = count;
+        shopItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
+        shopItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+
+        cartItem.querySelector(".counter__count").innerHTML = count;
+        cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
+        cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
     } else {
         productList.innerHTML += generateProductHTML(productId, product.id, term, PRICES[productId].price, PRICES[productId].realprice);
         e.currentTarget.style.display = "none";
@@ -81,6 +88,10 @@ const shopAddProduct = (e) => {
     tg.MainButton.setText(`КОШИК (${products.size})`);
 };
 
+const shopRemoveProduct = (e) => {
+
+};
+
 // Установка обработчиков событий для изменения опций и добавления в корзину
 document.querySelectorAll(".product__term").forEach(selector => {
     selector.addEventListener('change', changeOption);
@@ -88,4 +99,7 @@ document.querySelectorAll(".product__term").forEach(selector => {
 
 document.querySelectorAll(".shop .append, .shop .add").forEach(button => {
     button.addEventListener("click", shopAddProduct);
+});
+document.querySelectorAll(".shop .remove").forEach(button => {
+    button.addEventListener("click", shopRemoveProduct);
 });
