@@ -24,7 +24,7 @@ const clearCart = () => {
 };
 
 const addProduct = (e) => {
-    const product = e.currentTarget.closest("product");
+    const product = e.currentTarget.closest(".product");
     console.log(product);
     const productId = product.id;
     const count = products.get(productId) || 0;
