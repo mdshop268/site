@@ -144,7 +144,7 @@ option {
     color: var(--tg-theme-text-color, white);
 }
 
-.shop .add {
+.shop .append {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -162,7 +162,7 @@ option {
     transition: transform .2s ease;
 }
 
-.shop .add:active {
+.shop .append:active {
     transform: scale(.96);
 }
 
@@ -170,7 +170,7 @@ option {
     display: none;
 }
 
-.shop .add .plus {
+.shop .plus {
     display: block;
     box-sizing: border-box;
     font-size: 16px;
