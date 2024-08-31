@@ -1,7 +1,6 @@
 const updateCartDisplay = () => {
     const totalPriceElement = document.querySelector(".cart .total__price");
     const totalRealPriceElement = document.querySelector(".cart .total__realprice");
-    const productList = document.querySelector(".cart .product__list");
 
     const totalPrice = Array.from(products.entries())
         .reduce((sum, [id, count]) => sum + PRICES[id].price * count, 0);
@@ -25,7 +24,8 @@ const clearCart = () => {
 };
 
 const addProduct = (e) => {
-    const product = e.currentTarget.parentElement;
+    const product = e.currentTarget.closest("product");
+    console.log(product);
     const productId = product.id;
     const count = products.get(productId) || 0;
     products.set(productId, count + 1);
