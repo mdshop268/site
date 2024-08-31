@@ -60,11 +60,15 @@ const shopAddProduct = (e) => {
     const productId = product.id + productTerm.value;
     const count = products.get(productId) || 0;
 
+    console.log(count)
+
     // Обновление количества продукта в корзине
     products.set(productId, count + 1);
 
     if (count) {
         const item = productList.querySelector(`[id="${productId}"]`);
+        console.log("1");
+        console.log(item);
         item.querySelector(".counter__count").innerHTML = count + 1;
         item.querySelector(".product__price").innerHTML = PRICES[productId].price * (count + 1) + "₴";
         item.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count + 1) + "₴";
