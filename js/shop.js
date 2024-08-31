@@ -67,7 +67,7 @@ const shopAddProduct = (e) => {
     console.log(count);
 
     if (count) {
-        const shopItem = shopProductList.querySelector(`[id="${productId}"]`);
+        const shopItem = shopProductList.querySelector(`[id="${product.id}"]`);
         const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
 
         shopItem.querySelector(".counter__count").innerHTML = count;
