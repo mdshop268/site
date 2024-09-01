@@ -101,7 +101,8 @@ const shopRemoveProduct = (e) => {
         product.querySelector(".append").style.display = "inline-flex";
         product.querySelector(".counter").style.display = "none";
         
-        if (!tg.MainButton.isVisible) tg.MainButton.show();
+        if (Array.from(myMap.values()).some(value => value !== 0) && !tg.MainButton.isVisible) tg.MainButton.show();
+        else tg.MainButton.hide();
     } else {
         product.querySelector(".counter__count").innerHTML = count;
         product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
