@@ -63,7 +63,7 @@ const shopAddProduct = (e) => {
     // Обновление количества продукта в корзине
     products.set(productId, count);
 
-    if (count === 1) {
+    if (count !== 1) {
         const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
 
         product.querySelector(".counter__count").innerHTML = count;
@@ -86,11 +86,11 @@ const shopAddProduct = (e) => {
 
 const shopRemoveProduct = (e) => {
     const product = e.currentTarget.closest('.product');
-    const cartProductList = document.querySelector(".cart .product__list");
-    const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
     const productTerm = product.querySelector(".product__term");
     const productId = product.id + productTerm.value;
     const count = (products.get(productId) || 0) - 1;
+    const cartProductList = document.querySelector(".cart .product__list");
+    const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
 
     // Обновление количества продукта в корзине
     products.set(productId, count);
@@ -111,7 +111,7 @@ const shopRemoveProduct = (e) => {
         
         if (!tg.MainButton.isVisible) tg.MainButton.show();
     }
-    
+
     tg.MainButton.setText(`КОШИК (${products.size})`);
 };
 
