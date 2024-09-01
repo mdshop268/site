@@ -63,7 +63,13 @@ const shopAddProduct = (e) => {
     // Обновление количества продукта в корзине
     products.set(productId, count);
 
-    if (count !== 1) {
+    if (count === 1) {
+        cartProductList.innerHTML += generateProductHTML(productId, product.id, term, PRICES[productId].price, PRICES[productId].realprice);
+        e.currentTarget.style.display = "none";
+        product.querySelector(".counter").style.display = "flex";
+        
+        if (!tg.MainButton.isVisible) tg.MainButton.show();
+    } else {
         const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
 
         product.querySelector(".counter__count").innerHTML = count;
@@ -73,14 +79,8 @@ const shopAddProduct = (e) => {
         cartItem.querySelector(".counter__count").innerHTML = count;
         cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
         cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
-    } else {
-        cartProductList.innerHTML += generateProductHTML(productId, product.id, term, PRICES[productId].price, PRICES[productId].realprice);
-        e.currentTarget.style.display = "none";
-        product.querySelector(".counter").style.display = "flex";
-        
-        if (!tg.MainButton.isVisible) tg.MainButton.show();
     }
-    
+
     tg.MainButton.setText(`КОШИК (${products.size})`);
 };
 
@@ -95,7 +95,14 @@ const shopRemoveProduct = (e) => {
     // Обновление количества продукта в корзине
     products.set(productId, count);
 
-    if (count !== 0) {
+    if (count === 0) {
+        cartItem.remove();
+
+        product.querySelector(".append").style.display = "inline-flex";
+        product.querySelector(".counter").style.display = "none";
+        
+        if (!tg.MainButton.isVisible) tg.MainButton.show();
+    } else {
         product.querySelector(".counter__count").innerHTML = count;
         product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
         product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
@@ -103,13 +110,6 @@ const shopRemoveProduct = (e) => {
         cartItem.querySelector(".counter__count").innerHTML = count;
         cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
         cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
-    } else {
-        cartItem.remove();
-
-        product.querySelector(".append").style.display = "inline-flex";
-        product.querySelector(".counter").style.display = "none";
-        
-        if (!tg.MainButton.isVisible) tg.MainButton.show();
     }
 
     tg.MainButton.setText(`КОШИК (${products.size})`);
