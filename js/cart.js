@@ -25,52 +25,48 @@ const clearCart = () => {
 
 const cartAddProduct = (e) => {
     const product = e.currentTarget.closest('.product');
-    const productTerm = product.querySelector(".product__term");
-    const productId = product.id + productTerm.value;
-    const cartProductList = document.querySelector(".cart .product__list");
-    const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
-    const count = (products.get(productId) || 0) + 1;
+    const shopProductList = document.querySelector(".shop .product__list");
+    const shopItem = shopProductList.querySelector(`[id="${product.id.replace(/[0-9]/g, '')}"]`);
+    const count = (products.get(product.id) || 0) + 1;
 
-    products.set(productId, count);
+    products.set(product.id, count);
 
     product.querySelector(".counter__count").innerHTML = count;
-    product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-    product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+    product.querySelector(".product__price").innerHTML = PRICES[product.id].price * (count) + "₴";
+    product.querySelector(".product__realprice").innerHTML = PRICES[product.id].realprice * (count) + "₴";
 
-    cartItem.querySelector(".counter__count").innerHTML = count;
-    cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-    cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+    shopItem.querySelector(".counter__count").innerHTML = count;
+    shopItem.querySelector(".product__price").innerHTML = PRICES[product.id].price * (count) + "₴";
+    shopItem.querySelector(".product__realprice").innerHTML = PRICES[product.id].realprice * (count) + "₴";
 
     updateCartDisplay();
 };
 
-const cartRemoveProduct = () => {
+const cartRemoveProduct = (e) => {
     const product = e.currentTarget.closest('.product');
-    const productTerm = product.querySelector(".product__term");
-    const productId = product.id + productTerm.value;
-    const count = (products.get(productId) || 0) - 1;
-    const cartProductList = document.querySelector(".cart .product__list");
-    const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
+    const shopProductList = document.querySelector(".shop .product__list");
+    const shopItem = shopProductList.querySelector(`[id="${product.id.replace(/[0-9]/g, '')}"]`);
+    const count = (products.get(product.id) || 0) - 1;
 
     // Обновление количества продукта в корзине
-    products.set(productId, count);
+    products.set(product.id, count);
 
     if (count === 0) {
-        cartItem.remove();
+        product.remove();
 
-        product.querySelector(".append").style.display = "inline-flex";
-        product.querySelector(".counter").style.display = "none";
+        shopItem.querySelector(".append").style.display = "inline-flex";
+        shopItem.querySelector(".counter").style.display = "none";
         
         if (Array.from(myMap.values()).some(value => value !== 0) && !tg.MainButton.isVisible) tg.MainButton.show();
         else tg.MainButton.hide();
     } else {
         product.querySelector(".counter__count").innerHTML = count;
-        product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-        product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+        product.querySelector(".product__price").innerHTML = PRICES[product.id].price * (count) + "₴";
+        product.querySelector(".product__realprice").innerHTML = PRICES[product.id].realprice * (count) + "₴";
 
-        cartItem.querySelector(".counter__count").innerHTML = count;
-        cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-        cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+        shopItem.querySelector(".counter__count").innerHTML = count;
+        shopItem.querySelector(".product__price").innerHTML = PRICES[product.id].price * (count) + "₴";
+        shopItem.querySelector(".product__realprice").innerHTML = PRICES[product.id].realprice * (count) + "₴";
     }
 
     tg.MainButton.setText(`КУПИТИ (${products.size})`);
