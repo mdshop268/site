@@ -41,7 +41,7 @@ const cartAddProduct = (e) => {
 
     updateCartDisplay();
     tg.MainButton.setText(`КУПИТИ (${products.size})`);
-    tg.CloudStorage.setItem("cart", products, (error, value) => {if(error) console.log(error)});
+    tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(map.entries())), (error, value) => {if(error) console.log(error)});
 };
 
 const cartRemoveProduct = (e) => {
@@ -73,5 +73,5 @@ const cartRemoveProduct = (e) => {
 
     updateCartDisplay();
     tg.MainButton.setText(`КУПИТИ (${products.size})`);
-    tg.CloudStorage.setItem("cart", products, (error, value) => {if(error) console.log(error)});
+    tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(map.entries())), (error, value) => {if(error) console.log(error)});
 };
