@@ -57,7 +57,7 @@ const cartRemoveProduct = (e) => {
         shopItem.querySelector(".append").style.display = "inline-flex";
         shopItem.querySelector(".counter").style.display = "none";
         
-        if (Array.from(myMap.values()).some(value => value !== 0) && !tg.MainButton.isVisible) tg.MainButton.show();
+        if (Array.from(products.values()).some(value => value !== 0) && !tg.MainButton.isVisible) tg.MainButton.show();
         else tg.MainButton.hide();
     } else {
         product.querySelector(".counter__count").innerHTML = count;
@@ -69,5 +69,6 @@ const cartRemoveProduct = (e) => {
         shopItem.querySelector(".product__realprice").innerHTML = PRICES[product.id].realprice * (count) + "₴";
     }
 
+    updateCartDisplay();
     tg.MainButton.setText(`КУПИТИ (${products.size})`);
 };
