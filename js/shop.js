@@ -82,6 +82,7 @@ const shopAddProduct = (e) => {
     }
 
     tg.MainButton.setText(`КОШИК (${products.size})`);
+    tg.CloudStorage.setItem("cart", products, (error, value) => {if(error) console.log(error)});
 };
 
 const shopRemoveProduct = (e) => {
@@ -114,6 +115,7 @@ const shopRemoveProduct = (e) => {
     }
 
     tg.MainButton.setText(`КОШИК (${products.size})`);
+    tg.CloudStorage.setItem("cart", products, (error, value) => {if(error) console.log(error)});
 };
 
 // Установка обработчиков событий для изменения опций и добавления в корзину

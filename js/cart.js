@@ -40,6 +40,8 @@ const cartAddProduct = (e) => {
     shopItem.querySelector(".product__realprice").innerHTML = PRICES[product.id].realprice * (count) + "₴";
 
     updateCartDisplay();
+    tg.MainButton.setText(`КУПИТИ (${products.size})`);
+    tg.CloudStorage.setItem("cart", products, (error, value) => {if(error) console.log(error)});
 };
 
 const cartRemoveProduct = (e) => {
@@ -71,4 +73,5 @@ const cartRemoveProduct = (e) => {
 
     updateCartDisplay();
     tg.MainButton.setText(`КУПИТИ (${products.size})`);
+    tg.CloudStorage.setItem("cart", products, (error, value) => {if(error) console.log(error)});
 };

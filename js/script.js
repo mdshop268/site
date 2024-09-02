@@ -1,8 +1,19 @@
 const tg = window.Telegram.WebApp;
 
+const getCloudStorage = (error, value) => {
+    console.log(error);
+
+    products = value;
+};
+
 window.onload = function () {
     tg.ready();
     tg.expand();
+    tg.CloudStorage.getTtem("cart", getCloudStorage);
+
+    product.forEach((k, v) => {
+        console.log(k, v);
+    })
 };
 
 // Обработка клика на кнопку "Назад"
