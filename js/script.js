@@ -11,7 +11,7 @@ window.onload = function () {
     tg.expand();
     tg.CloudStorage.getItem("cart", getCloudStorage);
 
-    product.forEach((k, v) => {
+    products.forEach((k, v) => {
         console.log(k, v);
     })
 };
