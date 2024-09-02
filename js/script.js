@@ -9,7 +9,7 @@ const getCloudStorage = (error, value) => {
 window.onload = function () {
     tg.ready();
     tg.expand();
-    tg.CloudStorage.getTtem("cart", getCloudStorage);
+    tg.CloudStorage.getItem("cart", getCloudStorage);
 
     product.forEach((k, v) => {
         console.log(k, v);
