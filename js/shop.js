@@ -94,16 +94,14 @@ const shopRemoveProduct = (e) => {
     const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
 
     // Обновление количества продукта в корзине
-    products.set(productId, count);
+    if(!count) delete products[productId];
+    else products.set(productId, count);
 
     if (count === 0) {
         cartItem.remove();
 
         product.querySelector(".append").style.display = "inline-flex";
         product.querySelector(".counter").style.display = "none";
-        
-        if (Array.from(myMap.values()).some(value => value !== 0) && !tg.MainButton.isVisible) tg.MainButton.show();
-        else tg.MainButton.hide();
     } else {
         product.querySelector(".counter__count").innerHTML = count;
         product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
@@ -114,7 +112,8 @@ const shopRemoveProduct = (e) => {
         cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
     }
 
-    tg.MainButton.setText(`КОШИК (${products.size})`);
+    if (products.size) tg.MainButton.setText(`КОШИК (${products.size})`);
+    else tg.MainButton.hide();
     tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {if(error) console.log(error)});
 };
 

@@ -1,21 +1,19 @@
 const tg = window.Telegram.WebApp;
 
-const getCloudStorage = (error, value) => {
+const getCart = (error, value) => {
     if (error) console.log(error);
     else {
-        console.log(value);
         products = new Map(JSON.parse(value));
+        products.forEach((k, v) => {
+            console.log(k, v);
+        });
     }
 };
 
 window.onload = function () {
     tg.ready();
     tg.expand();
-    tg.CloudStorage.getItem("cart", getCloudStorage);
-
-    products.forEach((k, v) => {
-        console.log(k, v);
-    })
+    tg.CloudStorage.getItem("cart", getCart);
 };
 
 // Обработка клика на кнопку "Назад"
@@ -88,6 +86,7 @@ const handleMainButtonClick = () => {
 		const totalPrice = calculateTotalPrice();
     	tg.MainButton.setText(`КУПИТИ ${totalPrice}₴`);
     } else if (tg.MainButton.text.startsWith("КУПИТИ")) {
+        tg.CloudStorage.setItem("cart", "");
         tg.close();
     }
 };

@@ -21,6 +21,7 @@ const clearCart = () => {
     productList.innerHTML = "";
 
     tg.MainButton.hide();
+    tg.CloudStorage.setItem("cart", "");
 };
 
 const cartAddProduct = (e) => {
@@ -51,16 +52,14 @@ const cartRemoveProduct = (e) => {
     const count = (products.get(product.id) || 0) - 1;
 
     // Обновление количества продукта в корзине
-    products.set(product.id, count);
+    if(!count) delete products[productId];
+    else products.set(productId, count);
 
     if (count === 0) {
         product.remove();
 
         shopItem.querySelector(".append").style.display = "inline-flex";
         shopItem.querySelector(".counter").style.display = "none";
-        
-        if (Array.from(products.values()).some(value => value !== 0) && !tg.MainButton.isVisible) tg.MainButton.show();
-        else tg.MainButton.hide();
     } else {
         product.querySelector(".counter__count").innerHTML = count;
         product.querySelector(".product__price").innerHTML = PRICES[product.id].price * (count) + "₴";
@@ -72,6 +71,7 @@ const cartRemoveProduct = (e) => {
     }
 
     updateCartDisplay();
-    tg.MainButton.setText(`КУПИТИ (${products.size})`);
+    if (products.size) tg.MainButton.setText(`КОШИК (${products.size})`);
+    else tg.MainButton.hide();
     tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {if(error) console.log(error)});
 };
