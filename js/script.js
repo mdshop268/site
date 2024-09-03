@@ -1,9 +1,11 @@
 const tg = window.Telegram.WebApp;
 
 const getCloudStorage = (error, value) => {
-    console.log(error);
-
-    products = new Map(JSON.parse(mapString));
+    if (error) console.log(error);
+    else {
+        console.log(value);
+        products = new Map(JSON.parse(value));
+    }
 };
 
 window.onload = function () {
