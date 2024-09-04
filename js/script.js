@@ -15,26 +15,45 @@ const getCart = (error, value) => {
             const productTerm = product.querySelector(".product__term");
             productTerm.value = term;
 
+            console.log(productId, count);
+            console.log(id);
+            console.log(product);
+            console.log(cartProductList);
+            console.log(term);
+            console.log(productTerm);
+            console.log(product.value);
+
             cartProductList.innerHTML += generateProductHTML(productId, id, term, PRICES[productId].price, PRICES[productId].realprice);
             e.currentTarget.style.display = "none";
             product.querySelector(".counter").style.display = "flex";
+
+            console.log(1);
                 
             if(count > 1) {
+                console.log(2);
                 const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
                 
                 product.querySelector(".counter__count").innerHTML = count;
                 product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
                 product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+                
+                console.log(3);
 
                 cartItem.querySelector(".counter__count").innerHTML = count;
                 cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
                 cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
             }
+
+            console.log(4);
         });
+        console.log(5);
         if (products.size) {
+            console.log(6);
             tg.MainButton.show();
             tg.MainButton.setText(`КОШИК (${products.size})`);
+            console.log(7);
         }
+        console.log(8);
     }
 };
 
