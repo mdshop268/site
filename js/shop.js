@@ -94,6 +94,10 @@ const shopRemoveProduct = (e) => {
     const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
 
     // Обновление количества продукта в корзине
+    console.log(count);
+    console.log(!count);
+    console.log(products);
+
     if(!count) delete products[productId];
     else products.set(productId, count);
 
