@@ -7,9 +7,34 @@ const getCart = (error, value) => {
         // Карта продуктов с их ID и количеством
         products = new Map(JSON.parse(value));
 
-        products.forEach((k, v) => {
-            console.log(k, v);
+        products.forEach((productId, count) => {
+            const id = productId.replace(/[0-9]/g, '');
+            const product = document.getElementById(id);
+            const cartProductList = document.querySelector(".cart .product__list");
+            const term = parseInt(productId.slice(id.size));
+            const productTerm = product.querySelector(".product__term");
+            productTerm.value = term;
+
+            cartProductList.innerHTML += generateProductHTML(productId, id, term, PRICES[productId].price, PRICES[productId].realprice);
+            e.currentTarget.style.display = "none";
+            product.querySelector(".counter").style.display = "flex";
+                
+            if(count > 1) {
+                const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
+                
+                product.querySelector(".counter__count").innerHTML = count;
+                product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
+                product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+
+                cartItem.querySelector(".counter__count").innerHTML = count;
+                cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
+                cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+            }
         });
+        if (products.size) {
+            tg.MainButton.show();
+            tg.MainButton.setText(`КОШИК (${products.size})`);
+        }
     }
 };
 
