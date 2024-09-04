@@ -1,10 +1,11 @@
 const tg = window.Telegram.WebApp;
+var products = new Map();
 
 const getCart = (error, value) => {
     if (error) console.log(error);
     else {
         // Карта продуктов с их ID и количеством
-        var products = new Map(JSON.parse(value));
+        products = new Map(JSON.parse(value));
 
         products.forEach((k, v) => {
             console.log(k, v);
