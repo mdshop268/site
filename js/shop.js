@@ -82,7 +82,7 @@ const shopAddProduct = (e) => {
     }
 
     tg.MainButton.setText(`КОШИК (${products.size})`);
-    tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {if(error) console.log(error)});
+    tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {if(error) console.log("!!!ERROR!!!\n" + error)});
 };
 
 const shopRemoveProduct = (e) => {
@@ -94,11 +94,7 @@ const shopRemoveProduct = (e) => {
     const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
 
     // Обновление количества продукта в корзине
-    console.log(count);
-    console.log(!count);
-    console.log(products);
-
-    if(!count) delete products[productId];
+    if(!count) products.delete(productId);
     else products.set(productId, count);
 
     if (count === 0) {
@@ -118,7 +114,7 @@ const shopRemoveProduct = (e) => {
 
     if (products.size) tg.MainButton.setText(`КОШИК (${products.size})`);
     else tg.MainButton.hide();
-    tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {if(error) console.log(error)});
+    tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {if(error) console.log("!!!ERROR!!!\n" + error)});
 };
 
 // Установка обработчиков событий для изменения опций и добавления в корзину

@@ -42,7 +42,7 @@ const cartAddProduct = (e) => {
 
     updateCartDisplay();
     tg.MainButton.setText(`КУПИТИ (${products.size})`);
-    tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {if(error) console.log(error)});
+    tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {if(error) console.log("!!!ERROR!!!\n" + error)});
 };
 
 const cartRemoveProduct = (e) => {
@@ -52,7 +52,7 @@ const cartRemoveProduct = (e) => {
     const count = (products.get(product.id) || 0) - 1;
 
     // Обновление количества продукта в корзине
-    if(!count) delete products[productId];
+    if(!count) products.delete(productId);
     else products.set(productId, count);
 
     if (count === 0) {
@@ -73,5 +73,5 @@ const cartRemoveProduct = (e) => {
     updateCartDisplay();
     if (products.size) tg.MainButton.setText(`КОШИК (${products.size})`);
     else tg.MainButton.hide();
-    tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {if(error) console.log(error)});
+    tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {if(error) console.log("!!!ERROR!!!\n" + error)});
 };
