@@ -1,6 +1,3 @@
-// Карта продуктов с их ID и количеством
-const products = new Map();
-
 // Генерация HTML-кода для продукта
 const generateProductHTML = (id, name, term, price, realprice) => {
     const fileName = name.toLowerCase().replace(/ /g, "_");
