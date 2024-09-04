@@ -7,7 +7,11 @@ const getCart = (error, value) => {
         // Карта продуктов с их ID и количеством
         products = new Map(JSON.parse(value));
 
+        console.log(111);
+
         products.forEach((productId, count) => {
+            console.log(11);
+
             const id = productId.replace(/[0-9]/g, '');
             const product = document.getElementById(id);
             const cartProductList = document.querySelector(".cart .product__list");
