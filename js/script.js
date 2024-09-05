@@ -8,7 +8,7 @@ const getCart = (error, value) => {
         products = new Map(JSON.parse(value));
 
         products.forEach((productId, count) => {
-            const id = productId.replace(/[0-9]/g, '');
+            // const id = productId.replace(/[0-9]/g, '');
             console.log(11);
             const product = document.getElementById(id);
             console.log(12);
