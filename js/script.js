@@ -9,56 +9,32 @@ const getCart = (error, value) => {
 
         products.forEach((count, productId) => {
             const id = productId.replace(/[0-9]/g, '');
-            console.log(11);
             const product = document.getElementById(id);
-            console.log(12);
             const cartProductList = document.querySelector(".cart .product__list");
-            console.log(13);
-            const term = parseInt(productId.slice(id.length));
-            console.log(14);
             const productTerm = product.querySelector(".product__term");
-            console.log(15);
-            productTerm.value = term;
-            
-            console.log(productId, count);
-            console.log(id);
-            console.log(product);
-            console.log(cartProductList);
-            console.log(term);
-            console.log(productTerm);
-            console.log(product.value);
+            productTerm.value = parseInt(productId.slice(id.length));
+            const term = productTerm.selectedOptions[0].innerHTML;
 
             cartProductList.innerHTML += generateProductHTML(productId, id, term, PRICES[productId].price, PRICES[productId].realprice);
             product.querySelector(".append").style.display = "none";
             product.querySelector(".counter").style.display = "flex";
-
-            console.log(1);
                 
             if(count > 1) {
-                console.log(2);
                 const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
                 
                 product.querySelector(".counter__count").innerHTML = count;
                 product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
                 product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
-                
-                console.log(3);
 
                 cartItem.querySelector(".counter__count").innerHTML = count;
                 cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
                 cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
             }
-
-            console.log(4);
         });
-        console.log(5);
         if (products.size) {
-            console.log(6);
             tg.MainButton.show();
             tg.MainButton.setText(`КОШИК (${products.size})`);
-            console.log(7);
         }
-        console.log(8);
     }
 };
 
