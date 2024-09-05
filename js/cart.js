@@ -14,6 +14,20 @@ const updateCartDisplay = () => {
 };
 
 const clearCart = () => {
+    products.forEach((count, productId) => {
+        const id = productId.replace(/[0-9]/g, '');
+        const product = document.getElementById(id);
+        const productTerm = product.querySelector(".product__term");
+        productTerm.value = 1;
+
+        product.querySelector(".append").style.display = "inline-flex";
+        product.querySelector(".counter").style.display = "none";
+
+        product.querySelector(".counter__count").innerHTML = 1;
+        product.querySelector(".product__price").innerHTML = PRICES[productId].price + "₴";
+        product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice + "₴";
+    });
+
     products.clear();
     updateCartDisplay();
 
