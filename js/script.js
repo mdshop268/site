@@ -39,8 +39,8 @@ const getCart = (error, value) => {
 };
 
 window.onload = function () {
-    tg.CloudStorage.getItem("cart", getCart);
     tg.ready();
+    tg.CloudStorage.getItem("cart", getCart);
     tg.expand();
 };
 
