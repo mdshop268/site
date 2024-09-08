@@ -110,11 +110,11 @@
     margin-bottom: 10px;
 }
 
-.terms {
+.product__term__wrap {
     height: 38px;
 }
 
-.terms p {
+.product__term__wrap p {
     color: var(--tg-theme-hint-color, #9a9a9a);
     font-size: 12px;
     line-height: 15px;
