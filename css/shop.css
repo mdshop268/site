@@ -97,7 +97,7 @@
 }
 
 .shop .product__realprice {
-    display: inline-block;
+    display: inline;
     float: right;
     color: var(--tg-theme-hint-color, #9a9a9a);
     text-decoration: line-through;
@@ -114,7 +114,8 @@
     height: 38px;
 }
 
-.product__term__wrap p {
+.product__term__wrap span, .product__term__wrap p {
+    display: block;
     color: var(--tg-theme-hint-color, #9a9a9a);
     font-size: 12px;
     line-height: 15px;

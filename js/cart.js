@@ -67,7 +67,7 @@ const cartRemoveProduct = (e) => {
 
     // Обновление количества продукта в корзине
     if(!count) products.delete(product.id);
-    else products.set(productId, count);
+    else products.set(product.id, count);
 
     if (count === 0) {
         product.remove();
