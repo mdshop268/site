@@ -39,9 +39,9 @@ const getCart = (error, value) => {
 };
 
 window.onload = function () {
+    tg.CloudStorage.getItem("cart", getCart);
     tg.ready();
     tg.expand();
-    tg.CloudStorage.getItem("cart", getCart);
 };
 
 // Обработка клика на кнопку "Назад"
