@@ -14,7 +14,7 @@ img {
 }
 
 a {
-    color: var(--tg-theme-button-color, #6f22ff);
+    color: var(--tg-theme-button-color, #398af8);
     font-weight: 600;
     text-decoration: none;
 }
@@ -43,7 +43,7 @@ html, body {
 
 body {
     background-color: var(--tg-theme-bg-color, black);
-    color: var(--tg-theme-text-color, white);
+    color: var(--tg-theme-text-color, #dadada);
     display: flex;
     flex-direction: column;
 }

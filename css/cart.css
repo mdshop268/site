@@ -15,7 +15,7 @@
 }
 
 #clear {
-    color: var(--tg-theme-text-color, white);
+    color: var(--tg-theme-text-color, #dadada);
     font-size: 16px;
     line-height: 20px;
 }
@@ -87,7 +87,7 @@
 .cart .product__realprice {
     font-size: 13px;
     line-height: 18px;
-    color: var(--tg-theme-hint-color, gray);
+    color: var(--tg-theme-hint-color, #757577);
     text-decoration: line-through;
     margin-top: 4px;
 }
@@ -109,7 +109,7 @@
 .total__realprice {
     font-size: 13px;
     line-height: 18px;
-    color: var(--tg-theme-hint-color, gray);
+    color: var(--tg-theme-hint-color, #757577);
     margin-right: 8px;
     text-decoration: line-through;
 }
