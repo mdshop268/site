@@ -44,8 +44,8 @@ const updateProductPrice = (product, term, count = 1) => {
 // Обработчик изменения опции продукта
 const changeOption = (e) => {
     const product = e.currentTarget.closest('.product');
-    const append = product.closest(".append");
-    const counter = product.closest(".counter");
+    const append = product.querySelector(".append");
+    const counter = product.querySelector(".counter");
     const term = e.currentTarget.value;
     const productId = product.id + term;
     const count = (products.get(productId) || 0);
@@ -56,9 +56,9 @@ const changeOption = (e) => {
         counter.style.display = "flex";
     } else {
         if (count) {
-            counter.closest(".counter__count").innerHTML = count;
+            counter.querySelector(".counter__count").innerHTML = count;
         } else {
-            counter.closest(".counter__count").innerHTML = 1;
+            counter.querySelector(".counter__count").innerHTML = 1;
             append.style.display = "inline-flex";
             counter.style.display = "none";
         }
