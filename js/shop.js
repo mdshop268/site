@@ -49,7 +49,7 @@ const changeOption = (e) => {
     const term = e.currentTarget.value;
     const productId = product.id + term;
     const count = (products.get(productId) || 0);
-    updateProductPrice(product, term, count + 1);
+    updateProductPrice(product, term, count ? count : 1);
 
     if (counter.style.display === "none" && count) {
         append.style.display = "none";
