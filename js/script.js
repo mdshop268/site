@@ -18,11 +18,11 @@ const getCart = (error, value) => {
             cartProductList.innerHTML += generateProductHTML(productId, id, term, PRICES[productId].price, PRICES[productId].realprice);
             product.querySelector(".append").style.display = "none";
             product.querySelector(".counter").style.display = "flex";
+            product.querySelector(".counter__count").innerHTML = count;
                 
             if(count > 1) {
                 const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
                 
-                product.querySelector(".counter__count").innerHTML = count;
                 product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
                 product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
 
