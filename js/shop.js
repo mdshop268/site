@@ -27,25 +27,42 @@ const generateProductHTML = (id, name, term, price, realprice) => {
 };
 
 // Обновление цены продукта при изменении опции
-const updateProductPrice = (product, term) => {
+const updateProductPrice = (product, term, count = 1) => {
     const priceElement = product.querySelector('.product__price');
     const realPriceElement = product.querySelector('.product__realprice');
     const productId = product.id + term;
 
     if (priceElement) {
-        priceElement.textContent = PRICES[productId].price + '₴';
+        priceElement.textContent = PRICES[productId].price * count + '₴';
     }
 
     if (realPriceElement) {
-        realPriceElement.textContent = PRICES[productId].realprice + '₴';
+        realPriceElement.textContent = PRICES[productId].realprice * count + '₴';
     }
 };
 
 // Обработчик изменения опции продукта
 const changeOption = (e) => {
     const product = e.currentTarget.closest('.product');
+    const append = product.closest(".append");
+    const counter = product.closest(".counter");
     const term = e.currentTarget.value;
-    updateProductPrice(product, term);
+    const productId = product.id + term;
+    const count = (products.get(productId) || 0);
+    updateProductPrice(product, term, count);
+
+    if (counter.style.display === "none" && count) {
+        append.style.display = "none";
+        counter.style.display = "flex";
+    } else {
+        if (count) {
+            counter.closest(".counter__count").innerHTML = count;
+        } else {
+            counter.closest(".counter__count").innerHTML = 1;
+            append.style.display = "inline-flex";
+            counter.style.display = "none";
+        }
+    }
 };
 
 // Добавление продукта в корзину
