@@ -14,23 +14,21 @@ const getCart = (error, value) => {
             const productTerm = product.querySelector(".product__term");
             productTerm.value = parseInt(productId.slice(id.length));
             const term = productTerm.selectedOptions[0].innerHTML;
+            const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
 
             cartProductList.innerHTML += generateProductHTML(productId, id, term, PRICES[productId].price, PRICES[productId].realprice);
             product.querySelector(".append").style.display = "none";
             product.querySelector(".counter").style.display = "flex";
-            product.querySelector(".counter__count").innerHTML = count;
-                
-            if(count > 1) {
-                const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
-                
-                product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-                product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
 
-                cartItem.querySelector(".counter__count").innerHTML = count;
-                cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-                cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
-            }
+            product.querySelector(".counter__count").innerHTML = count;
+            product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
+            product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+
+            cartItem.querySelector(".counter__count").innerHTML = count;
+            cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
+            cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";   
         });
+        
         if (products.size) {
             tg.MainButton.show();
             tg.MainButton.setText(`КОШИК (${products.size})`);
