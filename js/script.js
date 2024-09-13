@@ -8,39 +8,37 @@ const getCart = (error, value) => {
         products = new Map(JSON.parse(value));
 
         products.forEach((count, productId) => {
-            console.log(1);
             const id = productId.replace(/[0-9]/g, '');
-            console.log(2);
             const product = document.getElementById(id);
-            console.log(3);
             const cartProductList = document.querySelector(".cart .product__list")
-            console.log(4);
             const productTerm = product.querySelector(".product__term");
-            console.log(5);
             productTerm.value = parseInt(productId.slice(id.length));
-            console.log(6);
             const term = productTerm.selectedOptions[0].innerHTML;
-            console.log(7);
             const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
-            console.log(8);
-
+            
             cartProductList.innerHTML += generateProductHTML(productId, id, term, PRICES[productId].price, PRICES[productId].realprice);
+            console.log(1);
             product.querySelector(".append").style.display = "none";
             product.querySelector(".counter").style.display = "flex";
-
+            
+            console.log(2);
             product.querySelector(".counter__count").innerHTML = count;
             product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
             product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
-
+            
+            console.log(3);
             cartItem.querySelector(".counter__count").innerHTML = count;
             cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
             cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";   
         });
 
+        console.log(4);
         if (products.size) {
+            console.log(111);
             tg.MainButton.show();
             tg.MainButton.setText(`КОШИК (${products.size})`);
         }
+        console.log(5);
     }
 };
 
