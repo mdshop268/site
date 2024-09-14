@@ -45,18 +45,18 @@ const getCart = (error, value) => {
 
 window.onload = function () {
     tg.ready();
-    tg.CloudStorage.getItem("cart", getCart);
-
+    
     const unavailabledProducts = document.querySelectorAll(".product.unavailable");
     unavailabledProducts.forEach(product => {
         const productTerm = product.querySelector(".product__term");
         const productButton = product.querySelector(".append");
-
+        
         productTerm.setAttribute("disabled", "true");
         productButton.setAttribute("disabled", "true");
         productButton.querySelector("span").innerHTML = "Недоступно";
     })
-
+    
+    tg.CloudStorage.getItem("cart", getCart);
     tg.expand();
 };
 
