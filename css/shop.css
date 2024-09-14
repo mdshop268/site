@@ -135,6 +135,11 @@
     margin-bottom: 1px;
 }
 
+.shop .product.unavailable .product__term__wrap span,
+.shop .product.unavailable .product__term__wrap p {
+    color: var(--tg-theme-hint-color-5) !important;
+}
+
 .shop .product__term {
     display: inline-flex;
     align-items: center;
