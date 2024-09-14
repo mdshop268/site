@@ -10,6 +10,12 @@ const getCart = (error, value) => {
         products.forEach((count, productId) => {
             const id = productId.replace(/[0-9]/g, '');
             const product = document.getElementById(id);
+
+            if(product.classList.contains("unavailable")) {
+                products.remove(productId);
+                return;
+            }
+
             const cartProductList = document.querySelector(".cart .product__list")
             const productTerm = product.querySelector(".product__term");
             productTerm.value = parseInt(productId.slice(id.length));
@@ -40,6 +46,17 @@ const getCart = (error, value) => {
 window.onload = function () {
     tg.ready();
     tg.CloudStorage.getItem("cart", getCart);
+
+    const unavailabledProducts = document.querySelectorAll(".product.unavailable");
+    unavailabledProducts.forEach(product => {
+        const productTerm = product.querySelector(".product__term");
+        const productButton = product.querySelector(".append");
+
+        productTerm.setAttribute("disbled", "true");
+        productButton.setAttribute("disbled", "true");
+        productButton.querySelector("span").innerHTML = "Недоступно";
+    })
+
     tg.expand();
 };
 
