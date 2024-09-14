@@ -9,29 +9,48 @@ const getCart = (error, value) => {
 
         products.forEach((count, productId) => {
             console.log(productId, count);
+            
             const id = productId.replace(/[0-9]/g, '');
             console.log(id);
+            
             const product = document.getElementById(id);
-            console.log(product);
-            const cartProductList = document.querySelector(".cart .product__list")
+            if (!product) {
+                console.error(`Product with id ${id} not found`);
+                return;
+            }
+            
+            const cartProductList = document.querySelector(".cart .product__list");
             const productTerm = product.querySelector(".product__term");
+            if (!productTerm) {
+                console.error("Product term not found");
+                return;
+            }
+        
             productTerm.value = parseInt(productId.slice(id.length));
-            const term = productTerm.selectedOptions[0].innerHTML;
+            const term = productTerm.selectedOptions[0]?.innerHTML || "";
             const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
-
+            
+            if (!cartItem) {
+                console.error(`Cart item with id ${productId} not found`);
+                return;
+            }
+        
             cartProductList.innerHTML += generateProductHTML(productId, id, term, PRICES[productId].price, PRICES[productId].realprice);
+            
             product.querySelector(".append").style.display = "none";
             product.querySelector(".counter").style.display = "flex";
-
+        
             product.querySelector(".counter__count").innerHTML = count;
-            product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-            product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
-            
+            product.querySelector(".product__price").innerHTML = PRICES[productId].price * count + "₴";
+            product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * count + "₴";
+        
             cartItem.querySelector(".counter__count").innerHTML = count;
-            cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-            cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+            cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * count + "₴";
+            cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * count + "₴";
+            
             console.log("FINISH!");
         });
+        
 
         if (products.size > 0) {
             console.log(111);
