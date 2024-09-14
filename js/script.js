@@ -8,52 +8,29 @@ const getCart = (error, value) => {
         products = new Map(JSON.parse(value));
 
         products.forEach((count, productId) => {
-            console.log(productId, count);
-            
             const id = productId.replace(/[0-9]/g, '');
-            console.log(id);
-            
             const product = document.getElementById(id);
-            if (!product) {
-                console.error(`Product with id ${id} not found`);
-                return;
-            }
-            
-            const cartProductList = document.querySelector(".cart .product__list");
+            const cartProductList = document.querySelector(".cart .product__list")
             const productTerm = product.querySelector(".product__term");
-            if (!productTerm) {
-                console.error("Product term not found");
-                return;
-            }
-        
             productTerm.value = parseInt(productId.slice(id.length));
-            const term = productTerm.selectedOptions[0]?.innerHTML || "";
-            const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
+            const term = productTerm.selectedOptions[0].innerHTML;
             
-            if (!cartItem) {
-                console.error(`Cart item with id ${productId} not found`);
-                return;
-            }
-        
             cartProductList.innerHTML += generateProductHTML(productId, id, term, PRICES[productId].price, PRICES[productId].realprice);
-            
+            const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
+
             product.querySelector(".append").style.display = "none";
             product.querySelector(".counter").style.display = "flex";
-        
-            product.querySelector(".counter__count").innerHTML = count;
-            product.querySelector(".product__price").innerHTML = PRICES[productId].price * count + "₴";
-            product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * count + "₴";
-        
-            cartItem.querySelector(".counter__count").innerHTML = count;
-            cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * count + "₴";
-            cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * count + "₴";
-            
-            console.log("FINISH!");
-        });
-        
 
-        if (products.size > 0) {
-            console.log(111);
+            product.querySelector(".counter__count").innerHTML = count;
+            product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
+            product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+            
+            cartItem.querySelector(".counter__count").innerHTML = count;
+            cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
+            cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+        });
+
+        if (products.size) {
             tg.MainButton.show();
             tg.MainButton.setText(`КОШИК (${products.size})`);
         }
