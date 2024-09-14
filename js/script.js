@@ -18,11 +18,11 @@ const getCart = (error, value) => {
             productTerm.value = parseInt(productId.slice(id.length));
             const term = productTerm.selectedOptions[0].innerHTML;
             const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
-            
+
             cartProductList.innerHTML += generateProductHTML(productId, id, term, PRICES[productId].price, PRICES[productId].realprice);
             product.querySelector(".append").style.display = "none";
             product.querySelector(".counter").style.display = "flex";
-            
+
             product.querySelector(".counter__count").innerHTML = count;
             product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
             product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
@@ -32,7 +32,7 @@ const getCart = (error, value) => {
             cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";   
         });
 
-        if (products.size) {
+        if (products.size > 0) {
             console.log(111);
             tg.MainButton.show();
             tg.MainButton.setText(`КОШИК (${products.size})`);
