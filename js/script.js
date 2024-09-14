@@ -52,8 +52,8 @@ window.onload = function () {
         const productTerm = product.querySelector(".product__term");
         const productButton = product.querySelector(".append");
 
-        productTerm.setAttribute("disbled", "true");
-        productButton.setAttribute("disbled", "true");
+        productTerm.setAttribute("disabled", "true");
+        productButton.setAttribute("disabled", "true");
         productButton.querySelector("span").innerHTML = "Недоступно";
     })
 

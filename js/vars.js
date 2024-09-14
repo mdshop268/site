@@ -54,6 +54,7 @@ function createDurationVar(name, time) {
 // Установка цветов с различными уровнями прозрачности
 setProperty("hint", "170, 170, 170", "08");
 setProperty("hint", "128, 128, 128", "15");
+setProperty("hint", "154, 154, 154", "5");
 setProperty("text", "154, 154, 154", "15");
 setProperty("text", "128, 128, 128", "08");
 setProperty("text", "128, 128, 128", "04");
