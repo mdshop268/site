@@ -188,8 +188,8 @@ option {
 }
 
 .shop .product.unavailable .append {
-    box-shadow: 0 2px 8px rgba(255, 0, 0, .3),
-                0 2px 1px rgba(255, 0, 0, .3);
+    /* box-shadow: 0 2px 8px rgba(255, 0, 0, .3),
+                0 2px 1px rgba(255, 0, 0, .3); */
     color: var(--tg-theme-hint-color-5) !important;
     cursor: not-allowed;
 }
