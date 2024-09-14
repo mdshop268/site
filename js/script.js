@@ -29,7 +29,8 @@ const getCart = (error, value) => {
             
             cartItem.querySelector(".counter__count").innerHTML = count;
             cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-            cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";   
+            cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+            console.log("FINISH!");
         });
 
         if (products.size > 0) {
