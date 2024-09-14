@@ -1,6 +1,6 @@
 const PRICES = {
 	// FORTNITE //
-	"Fortnite Crew": {
+	"Fortnite Crew1": {
 		"price": 130,
 		"realprice": 299,
 	},
