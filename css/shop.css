@@ -80,6 +80,7 @@
 }
 
 .shop .product.unavailable {
+    opacity: .85;
     color: var(--tg-theme-hint-color-5) !important;
 }
 
@@ -89,6 +90,10 @@
     height: 160px;
     border-radius: 20px;
     margin: 0 auto;
+}
+
+.shop .product.unavailable .product__img {
+    opacity: .6;
 }
 
 .shop .product__info {
@@ -105,6 +110,10 @@
     float: right;
     color: var(--tg-theme-hint-color, #9a9a9a);
     text-decoration: line-through;
+}
+
+.shop .product.unavailable .product__realprice {
+    color: var(--tg-theme-hint-color-5) !important;
 }
 
 .shop .product__name {
@@ -142,6 +151,7 @@
 
 .shop .product.unavailable .product__term {
     background-color: var(--tg-theme-bg-color, black);
+    color: var(--tg-theme-hint-color-5) !important;
     cursor: not-allowed;
 }
 
@@ -175,6 +185,7 @@ option {
 .shop .product.unavailable .append {
     box-shadow: 0 2px 8px rgba(255, 0, 0, .3),
                 0 2px 1px rgba(255, 0, 0, .3);
+    color: var(--tg-theme-hint-color-5) !important;
     cursor: not-allowed;
 }
 
