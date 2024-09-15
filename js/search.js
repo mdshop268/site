@@ -114,7 +114,7 @@ function similarityPercentage(a, b) {
 }
 
 function search(text) {
-	let counter = 0
+	let counter = 0;
 	for (const name of names) {
 		const parent = name.parentNode.parentNode;
 		const suitable = (similarityPercentage(text, name.innerHTML) >= 80);
