@@ -6,6 +6,29 @@
     margin: 4px 0;
 }
 
+.shop nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 12px 0;
+}
+
+.shop nav .banner {
+    display: block;
+    width: 80vw;
+    height: 10vw;
+    max-width: 510px;
+    height: 63.75px;
+    border-radius: 10px;
+    background-color: var(--tg-theme-hint-color-08);
+}
+
+.shop .banner img {
+    width: 80vw;
+    height: 10vw;
+}
+
 .shop main {
     display: flex;
     justify-content: center;
