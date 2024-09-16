@@ -16,17 +16,21 @@
 
 .shop nav .banner {
     display: block;
-    width: 92vw;
-    height: 11.5vw;
+    width: 88vw;
+    height: 11vw;
     max-width: 510px;
-    height: 63.75px;
+    max-height: 63.75px;
     border-radius: 10px;
     background-color: var(--tg-theme-hint-color-08);
+    background-image: url(../images/banner.svg);
 }
 
-.shop .banner img {
-    width: 80vw;
-    height: 10vw;
+.shop .banner:hover {
+    opacity: .95;
+}
+
+.shop .banner:active {
+    opacity: .9;
 }
 
 .shop main {
