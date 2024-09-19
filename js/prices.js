@@ -57,6 +57,6 @@ const PRICES = {
 	},
 	"Fortnite Gift100": {
 		"price": 15,
-		"realprice": 19.99,
+		"realprice": 19.9,
 	}
 }
