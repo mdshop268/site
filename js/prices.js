@@ -47,4 +47,16 @@ const PRICES = {
 		"price": 900,
 		"realprice": 2400,
 	},
+	"Youtube Premium1": {
+		"price": 85,
+		"realprice": 99,
+	},
+	"Youtube Premium12": {
+		"price": 2,
+		"realprice": 2,
+	},
+	"Fortnite Gift100": {
+		"price": 15,
+		"realprice": 19.99,
+	}
 }
