@@ -133,8 +133,24 @@ function search(text) {
 
 const names = document.querySelectorAll(".shop .product__name");
 const search__field = document.getElementById("search");
+const search__ico = documen.querySelector(".search__ico");
 
-search__field.addEventListener("keyup", function (e) {
+search__field.onfocus = function (e) {
+	search__ico.innerHTML = "close";
+};
+search__field.onblur = function (e) {
+	search__ico.innerHTML = "search";
+};
+
+search__ico.onclick = function (e) {
+	if(search__ico.innerHTML === "search") {
+		search__field.focus();
+	} else if(search__ico.innerHTML === "close") {
+		search__field.blur();
+	}
+};
+
+search__field.onkeyup = function (e) {
 	const text = search__field.value.toLowerCase();
 	search(text);
-});
+};

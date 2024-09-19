@@ -18,7 +18,8 @@
     border: 2px solid var(--tg-theme-button-color, #398af8);
 }
 
-.loupe {
+.search__ico {
+    cursor: pointer;
     font-size: 24px;
     vertical-align: middle;
     padding: 6px;
@@ -39,7 +40,7 @@
     font-weight: 500;
 }
 
-.search__filters {
+.settings__button {
     background-color: var(--tg-theme-hint-color-08);
     width: 40px;
     height: 40px;
@@ -47,13 +48,13 @@
     border-radius: 12px;
 }
 
-.filter {
+.settings__ico {
     width: 60%;
     height: 60%;
     vertical-align: middle;
 }
 
-.filter .primary-color {
+.settings__ico .primary-color {
     fill: var(--tg-theme-button-color, #398af8);
 }
 
@@ -62,7 +63,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin: 15px 0;
+    margin: 14px 0;
 }
 
 .shop nav .banner {
