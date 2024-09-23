@@ -75,6 +75,7 @@
     border-radius: 10px;
     background-color: var(--tg-theme-hint-color-08);
     background-image: url(../images/banner.svg);
+    cursor: pointer;
 }
 
 .shop .banner:hover {

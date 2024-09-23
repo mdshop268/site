@@ -87,12 +87,12 @@ const shopAddProduct = (e) => {
         const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
 
         product.querySelector(".counter__count").innerHTML = count;
-        product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-        product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+        product.querySelector(".product__price").innerHTML = parseFloat((PRICES[productId].price * count).toFixed(1)) + "₴";
+        product.querySelector(".product__realprice").innerHTML = parseFloat((PRICES[productId].realprice * count).toFixed(1)) + "₴";
 
         cartItem.querySelector(".counter__count").innerHTML = count;
-        cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-        cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+        cartItem.querySelector(".product__price").innerHTML = parseFloat((PRICES[productId].price * count).toFixed(1)) + "₴";
+        cartItem.querySelector(".product__realprice").innerHTML = parseFloat((PRICES[productId].realprice * count).toFixed(1)) + "₴";
     }
 
     tg.MainButton.setText(`КОШИК (${products.size})`);
@@ -118,12 +118,12 @@ const shopRemoveProduct = (e) => {
         product.querySelector(".counter").style.display = "none";
     } else {
         product.querySelector(".counter__count").innerHTML = count;
-        product.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-        product.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+        product.querySelector(".product__price").innerHTML = parseFloat((PRICES[productId].price * count).toFixed(1)) + "₴";
+        product.querySelector(".product__realprice").innerHTML = parseFloat((PRICES[productId].realprice * count).toFixed(1)) + "₴";
 
         cartItem.querySelector(".counter__count").innerHTML = count;
-        cartItem.querySelector(".product__price").innerHTML = PRICES[productId].price * (count) + "₴";
-        cartItem.querySelector(".product__realprice").innerHTML = PRICES[productId].realprice * (count) + "₴";
+        cartItem.querySelector(".product__price").innerHTML = parseFloat((PRICES[productId].price * count).toFixed(1)) + "₴";
+        cartItem.querySelector(".product__realprice").innerHTML = PparseFloat((PRICES[productId].realprice * count).toFixed(1)) + "₴";
     }
 
     if (products.size) tg.MainButton.setText(`КОШИК (${products.size})`);
