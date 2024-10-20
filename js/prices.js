@@ -1,8 +1,12 @@
 const PRICES = {
 	// FORTNITE //
 	"Fortnite Crew1": {
-		"price": 130,
+		"price": 140,
 		"realprice": 299,
+	},
+	"Fortnite Gift100": {
+		"price": 15,
+		"realprice": 19.9,
 	},
 	// DISCORD //
 	"Discord Nitro Basic1": {
@@ -55,8 +59,4 @@ const PRICES = {
 		"price": 800,
 		"realprice": 1200,
 	},
-	"Fortnite Gift100": {
-		"price": 15,
-		"realprice": 19.9,
-	}
 }
