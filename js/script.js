@@ -131,7 +131,7 @@ const handleMainButtonClick = () => {
     	tg.MainButton.setText(`КУПИТИ ${totalPrice}₴`);
     } else if (tg.MainButton.text.startsWith("КУПИТИ")) {
         tg.CloudStorage.setItem("cart", "");
-        tg.sendData(Object.entries(products).map(([key, value]) => `${key}:${value}`).join(';'));
+        tg.sendData(Array.from(products.entries()).map(([key, value]) => `${key}:${value}`).join(';'));
         // tg.close();
     }
 };
