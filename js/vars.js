@@ -32,10 +32,21 @@ function setProperty(name, defaultColor, opacity) {
     const computedStyle = getComputedStyle(document.documentElement);
     const hexColor = computedStyle.getPropertyValue(`--tg-theme-${name}-color`).trim();
     const rgbColor = hexToRgb(hexColor) || defaultColor;
+    const bodyColor = getComputedStyle(document.body).backgroundColor.slice(4, -1);
+    let resColor = "";
+    
+    for(let i = 0; i < 3; i++){
+        resColor += Math.round((parseInt(rgbColor.split(", ")[i]) + parseInt(bodyColor.split(", ")[i])) * (parseInt(opacity) / 100));
+        if(i != 2) resColor += ", ";
+    }
 
+    // document.documentElement.style.setProperty(
+    //     `--tg-theme-${name}-color-${opacity}`, 
+    //     `rgba(${rgbColor}, .${opacity})`
+    // );
     document.documentElement.style.setProperty(
         `--tg-theme-${name}-color-${opacity}`, 
-        `rgba(${rgbColor}, .${opacity})`
+        `rgb(${resColor})`
     );
 }
 
