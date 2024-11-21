@@ -144,7 +144,7 @@
 }
 
 .shop .product.unavailable .product__realprice {
-    color: var(--tg-theme-hint-color-5) !important;
+    color: var(--tg-theme-hint-color-5, #9a9a9a80) !important;
 }
 
 .shop .product__name {
