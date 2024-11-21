@@ -6,7 +6,7 @@ let cx = ctx.canvas.width / 2;
 let cy = ctx.canvas.height / 2;
 
 let particles = [];
-const particleCount = 30000;
+const particleCount = 400;
 const gravity = 0.5;
 const terminalVelocity = 3;
 const drag = 0.075;
