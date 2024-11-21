@@ -10,16 +10,6 @@ const particleCount = 400;
 const gravity = 0.5;
 const terminalVelocity = 3;
 const drag = 0.075;
-const colors = [
-  { front: 'red', back: 'darkred' },
-  { front: 'green', back: 'darkgreen' },
-  { front: 'blue', back: 'darkblue' },
-  { front: 'yellow', back: 'darkyellow' },
-  { front: 'orange', back: 'darkorange' },
-  { front: 'pink', back: 'darkpink' },
-  { front: 'purple', back: 'darkpurple' },
-  { front: 'turquoise', back: 'darkturquoise' }
-];
 
 // const isWinter = ([11, 0, 1].includes(new Date().getMonth()));
 const isWinter = true;
@@ -34,8 +24,7 @@ function resizeCanvas() {
 const randomRange = (min, max) => Math.random() * (max - min) + min;
 
 function createParticle(isWinter) {
-  if (isWinter) {
-    return {
+  return {
       dimensions: {
         radius: randomRange(1, 4),
       },
@@ -49,29 +38,7 @@ function createParticle(isWinter) {
         y: randomRange(0, -50),
       },
     };
-  } else {
-    return {
-      color: colors[Math.floor(randomRange(0, colors.length))],
-      dimensions: {
-        x: randomRange(10, 20),
-        y: randomRange(10, 30),
-      },
-      position: {
-        x: randomRange(0, canvas.width),
-        y: canvas.height - 1,
-      },
-      rotation: randomRange(0, 2 * Math.PI),
-      scale: {
-        x: 1,
-        y: 1,
-      },
-      velocity: {
-        x: randomRange(-25, 25),
-        y: randomRange(0, -50),
-      },
-    };
   }
-}
 
 function initParticles() {
   for (let i = 0; i < particleCount; i++) {
@@ -96,8 +63,7 @@ function updateParticle(particle) {
 }
 
 function renderParticle(particle) {
-  if (isWinter) {
-    const radius = particle.dimensions.radius;
+  const radius = particle.dimensions.radius;
 
     ctx.translate(particle.position.x, particle.position.y);
     ctx.rotate(particle.rotation);
@@ -109,20 +75,6 @@ function renderParticle(particle) {
     ctx.closePath();
 
     ctx.setTransform(1, 0, 0, 1, 0, 0);
-  } else {
-    const width = particle.dimensions.x * particle.scale.x;
-    const height = particle.dimensions.y * particle.scale.y;
-
-    ctx.translate(particle.position.x, particle.position.y);
-    ctx.rotate(particle.rotation);
-
-    particle.scale.y = Math.cos(particle.position.y * 0.1);
-    ctx.fillStyle = particle.scale.y > 0 ? particle.color.front : particle.color.back;
-
-    ctx.fillRect(-width / 2, -height / 2, width, height);
-
-    ctx.setTransform(1, 0, 0, 1, 0, 0);
-  }
 }
 
 function render() {
@@ -139,7 +91,9 @@ function render() {
   window.requestAnimationFrame(render);
 }
 
-initParticles();
-render();
+if(isWinter){
+  initParticles();
+  render();
+}
 
 window.addEventListener('resize', resizeCanvas);
