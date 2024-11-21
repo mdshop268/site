@@ -143,6 +143,18 @@ body {
     line-height: 18px;
 }
 
+.bg {
+    background-color: transparent; 
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0px; 
+    left: 0px; 
+    margin: 0;
+    z-index: -1;
+    pointer-events: none; 
+}
+
 @keyframes shop_slideIn {
     from {
         margin-top: -100vh;

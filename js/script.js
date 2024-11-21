@@ -4,7 +4,6 @@ var products = new Map();
 const getCart = (error, value) => {
     if (error) console.log(error);
     else {
-        // Карта продуктов с их ID и количеством
         products = new Map(JSON.parse(value));
 
         products.forEach((count, productId) => {
@@ -44,6 +43,11 @@ const getCart = (error, value) => {
 };
 
 window.onload = function () {
+    const footer = document.querySelector("footer");
+    const year = new Date().getFullYear();
+
+    footer.innerHTML = `&copy; ${year}. Усі права захищенні.`;
+
     tg.ready();
     
     const unavailabledProducts = document.querySelectorAll(".product.unavailable");
@@ -132,7 +136,6 @@ const handleMainButtonClick = () => {
     } else if (tg.MainButton.text.startsWith("КУПИТИ")) {
         tg.CloudStorage.setItem("cart", "");
         tg.sendData(Array.from(products.entries()).map(([key, value]) => `${key}:${value}`).join(';'));
-        // tg.close();
     }
 };
 
