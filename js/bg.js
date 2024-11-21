@@ -37,7 +37,7 @@ function createParticle(isWinter) {
   if (isWinter) {
     return {
       dimensions: {
-        radius: randomRange(2, 6),
+        radius: randomRange(1, 4),
       },
       position: {
         x: randomRange(0, canvas.width),
