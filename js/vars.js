@@ -36,7 +36,7 @@ function setProperty(name, defaultColor, opacity) {
     let resColor = "";
     
     for(let i = 0; i < 3; i++){
-        resColor += Math.round((parseInt(rgbColor.split(", ")[i]) + parseInt(bodyColor.split(", ")[i])) * (parseInt("0." + opacity)));
+        resColor += Math.round((parseInt(rgbColor.split(", ")[i]) + parseInt(bodyColor.split(", ")[i])) * (parseFloat("0." + opacity)));
         if(i != 2) resColor += ", ";
     }
 
