@@ -67,6 +67,8 @@ const changeOption = (e) => {
 
 // Добавление продукта в корзину
 const shopAddProduct = (e) => {
+    setTimeout(() => {}, animation);
+
     const product = e.currentTarget.closest('.product');
     const cartProductList = document.querySelector(".cart .product__list");
     const productTerm = product.querySelector(".product__term");
@@ -100,6 +102,8 @@ const shopAddProduct = (e) => {
 };
 
 const shopRemoveProduct = (e) => {
+    setTimeout(() => {}, animation);
+
     const product = e.currentTarget.closest('.product');
     const productTerm = product.querySelector(".product__term");
     const productId = product.id + productTerm.value;

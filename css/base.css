@@ -13,6 +13,10 @@ img {
     pointer-events: none !important;
 }
 
+button:active {
+    animation: var(--animation) ease buttonAnimation;
+}
+
 a {
     color: var(--tg-theme-button-color, #398af8);
     font-weight: 600;
@@ -153,6 +157,20 @@ body {
     margin: 0;
     z-index: -1;
     pointer-events: none; 
+}
+
+@keyframes buttonAnimation {
+    from {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(.95);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }
 
 @keyframes shop_slideIn {
