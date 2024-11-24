@@ -161,7 +161,7 @@ search__ico.onclick = function (e) {
 };
 
 const commands = new Map();
-commands.set("SNOW", () => {
+commands.set("_SNOW", () => {
 	if(isWinter) return;
 
 	isWinter = true;
@@ -169,10 +169,10 @@ commands.set("SNOW", () => {
 });
 
 search__field.onkeyup = function (e) {
-	const text = search__field.value.toLowerCase();
+	const text = search__field.value;
 
-	if(commands.get(text)) {
+	if(e.key === "Enter" && commands.get(text)) {
 		commands.get(text)();
 	}
-	else {search(text);}
+	else {search(text.toLowerCase());}
 };
