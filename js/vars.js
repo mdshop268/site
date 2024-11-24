@@ -33,20 +33,23 @@ function setProperty(name, defaultColor, opacity) {
     const hexColor = computedStyle.getPropertyValue(`--tg-theme-${name}-color`).trim();
     const rgbColor = hexToRgb(hexColor) || defaultColor;
     const bodyColor = getComputedStyle(document.body).backgroundColor.slice(4, -1);
-    let resColor = "";
-    
-    for(let i = 0; i < 3; i++){
-        resColor += Math.round((parseInt(rgbColor.split(", ")[i]) + parseInt(bodyColor.split(", ")[i])) * (parseFloat("0." + opacity)));
-        if(i != 2) resColor += ", ";
-    }
 
-    // document.documentElement.style.setProperty(
-    //     `--tg-theme-${name}-color-${opacity}`, 
-    //     `rgba(${rgbColor}, .${opacity})`
-    // );
+    const alpha = opacity.length === 1 
+        ? parseInt(opacity) / 10 
+        : parseInt(opacity) / 100;
+
+    const [r1, g1, b1] = rgbColor.split(", ").map(Number);
+    const [r2, g2, b2] = bodyColor.split(", ").map(Number);
+
+    const resColor = [
+        Math.round(r1 * alpha + r2 * (1 - alpha)),
+        Math.round(g1 * alpha + g2 * (1 - alpha)),
+        Math.round(b1 * alpha + b2 * (1 - alpha))
+    ];
+
     document.documentElement.style.setProperty(
-        `--tg-theme-${name}-color-${opacity}`, 
-        `rgb(${resColor})`
+        `--tg-theme-${name}-color-${opacity}`,
+        `rgb(${resColor.join(", ")})`
     );
 }
 
