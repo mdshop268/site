@@ -15,7 +15,7 @@
 }
 
 .search:focus-within {
-    border: 2px solid var(--tg-theme-button-color, #398af8);
+    border: 2px solid var(--tg-theme-button-color, #4090e6);
 }
 
 .search__ico {
@@ -55,7 +55,7 @@
 }
 
 .settings__ico .primary-color {
-    fill: var(--tg-theme-button-color, #398af8);
+    fill: var(--tg-theme-button-color, #4090e6);
 }
 
 .shop nav {
@@ -165,7 +165,7 @@
     display: inline-flex;
     align-items: center;
     padding: 4px;
-    background-color: var(--tg-theme-button-color, #398af8);
+    background-color: var(--tg-theme-button-color, #4090e6);
     color: var(--tg-theme-button-text-color, #dadada);
     border: none;
     border-radius: 8px;
@@ -177,6 +177,7 @@
 
 .shop .product.unavailable .product__term {
     background-color: var(--tg-theme-bg-color, black);
+    color: var(--tg-theme-text-color, #dadada);
     cursor: not-allowed;
 }
 
