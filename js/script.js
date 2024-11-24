@@ -1,4 +1,21 @@
 const tg = window.Telegram.WebApp;
+tg.requestTheme().then((themeParams) => {
+    console.log('COPILOT: ', themeParams); 
+});
+
+tg.onEvent('themeChanged', () => {
+    console.log("CHAT GPT: ")
+    const themeParams = tg.themeParams;
+
+    // Получение текущей темы
+    const theme = tg.colorScheme; // 'light' или 'dark'
+
+    console.log('Тема изменилась:', theme);
+    console.log('Цвета темы:', themeParams);
+
+    // Здесь можно обновить интерфейс вашего приложения в зависимости от темы
+});
+
 var products = new Map();
 
 const getCart = (error, value) => {
@@ -48,8 +65,6 @@ window.onload = function () {
 
     footer.innerHTML = `&copy; ${year}. Усі права захищенні.`;
 
-    tg.ready();
-    
     const unavailabledProducts = document.querySelectorAll(".product.unavailable");
     unavailabledProducts.forEach(product => {
         const productTerm = product.querySelector(".product__term");
@@ -61,6 +76,7 @@ window.onload = function () {
     })
     
     tg.CloudStorage.getItem("cart", getCart);
+    tg.ready();
     tg.expand();
 };
 
