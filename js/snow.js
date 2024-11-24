@@ -69,7 +69,7 @@ function renderParticle(particle) {
 
     ctx.beginPath();
     ctx.arc(0, 0, radius, 0, 2 * Math.PI, false);
-    ctx.fillStyle = bodyDark ? 'white' : 'cyan';
+    ctx.fillStyle = (tg.colorScheme === 'dark') ? 'white' : 'cyan';
     ctx.fill();
     ctx.closePath();
 

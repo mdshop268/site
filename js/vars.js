@@ -65,7 +65,6 @@ function createDurationVar(name, time) {
 
 const bodyColor = getComputedStyle(document.body).backgroundColor.slice(4, -1);
 const [bR, bG, bB] = bodyColor.split(", ").map(Number);
-const bodyDark = (1 - (0.299 * bR + 0.587 * bG + 0.114 * bB, 16) / 255 < 0.5);
 
 // Установка цветов с различными уровнями прозрачности
 setProperty("hint", "170, 170, 170", "08");

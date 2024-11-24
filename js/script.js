@@ -1,17 +1,5 @@
 const tg = window.Telegram.WebApp;
-
-tg.onEvent('themeChanged', () => {
-    console.log("CHAT GPT: ")
-    const themeParams = tg.themeParams;
-
-    // Получение текущей темы
-    const theme = tg.colorScheme; // 'light' или 'dark'
-
-    console.log('Тема изменилась:', theme);
-    console.log('Цвета темы:', themeParams);
-
-    // Здесь можно обновить интерфейс вашего приложения в зависимости от темы
-});
+tg.onEvent('themeChanged', () => {location.reload();});
 
 var products = new Map();
 
