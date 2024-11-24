@@ -70,7 +70,7 @@ function renderParticle(particle) {
 
     ctx.beginPath();
     ctx.arc(0, 0, radius, 0, 2 * Math.PI, false);
-    ctx.fillStyle = bgDark ? 'white' : 'cyan';
+    ctx.fillStyle = bodyDark ? 'white' : 'cyan';
     ctx.fill();
     ctx.closePath();
 
