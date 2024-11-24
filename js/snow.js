@@ -5,14 +5,13 @@ canvas.height = window.innerHeight;
 let cx = ctx.canvas.width / 2;
 let cy = ctx.canvas.height / 2;
 
-let particles = [];
+let snowflakes = [];
 const particleCount = 400;
 const gravity = 0.5;
 const terminalVelocity = 3;
 const drag = 0.075;
 
-// const isWinter = ([11, 0, 1].includes(new Date().getMonth()));
-const isWinter = true;
+var isWinter = ([11, 0, 1].includes(new Date().getMonth()));
 
 function resizeCanvas() {
   canvas.width = window.innerWidth;
@@ -40,9 +39,9 @@ function createParticle(isWinter) {
     };
   }
 
-function initParticles() {
+function initSnowflakes() {
   for (let i = 0; i < particleCount; i++) {
-    particles.push(createParticle(isWinter));
+    snowflakes.push(createParticle(isWinter));
   }
 }
 
@@ -80,20 +79,22 @@ function renderParticle(particle) {
 function render() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  particles = particles.filter(particle => {
+  snowflakes = snowflakes.filter(particle => {
     const stillVisible = updateParticle(particle);
     renderParticle(particle);
     return stillVisible;
   });
 
-  if (particles.length <= 50) initParticles();
+  if (snowflakes.length <= 50) initSnowflakes();
 
   window.requestAnimationFrame(render);
 }
 
-if(isWinter){
-  initParticles();
-  render();
+function startSnowing() { 
+  if(isWinter) {
+    initSnowflakes();
+    render();
+  }
 }
 
 window.addEventListener('resize', resizeCanvas);

@@ -160,7 +160,19 @@ search__ico.onclick = function (e) {
 	}
 };
 
+const commands = new Map();
+commands.set("SNOW", () => {
+	if(isWinter) return;
+
+	isWinter = true;
+	startSnowing();
+});
+
 search__field.onkeyup = function (e) {
 	const text = search__field.value.toLowerCase();
-	search(text);
+
+	if(commands.get(text)) {
+		commands.get(text)();
+	}
+	else {search(text);}
 };
