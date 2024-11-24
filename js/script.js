@@ -1,7 +1,4 @@
 const tg = window.Telegram.WebApp;
-tg.requestTheme().then((themeParams) => {
-    console.log('COPILOT: ', themeParams); 
-});
 
 tg.onEvent('themeChanged', () => {
     console.log("CHAT GPT: ")
