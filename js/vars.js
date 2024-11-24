@@ -32,19 +32,17 @@ function setProperty(name, defaultColor, opacity) {
     const computedStyle = getComputedStyle(document.documentElement);
     const hexColor = computedStyle.getPropertyValue(`--tg-theme-${name}-color`).trim();
     const rgbColor = hexToRgb(hexColor) || defaultColor;
-    const bodyColor = getComputedStyle(document.body).backgroundColor.slice(4, -1);
 
     const alpha = opacity.length === 1 
         ? parseInt(opacity) / 10 
         : parseInt(opacity) / 100;
-
-    const [r1, g1, b1] = rgbColor.split(", ").map(Number);
-    const [r2, g2, b2] = bodyColor.split(", ").map(Number);
+        
+    const [r, g, b] = rgbColor.split(", ").map(Number);
 
     const resColor = [
-        Math.round(r1 * alpha + r2 * (1 - alpha)),
-        Math.round(g1 * alpha + g2 * (1 - alpha)),
-        Math.round(b1 * alpha + b2 * (1 - alpha))
+        Math.round(r * alpha + bR * (1 - alpha)),
+        Math.round(g * alpha + bG * (1 - alpha)),
+        Math.round(b * alpha + bB * (1 - alpha))
     ];
 
     document.documentElement.style.setProperty(
@@ -64,6 +62,10 @@ function createDurationVar(name, time) {
 	window[name] = time;
     document.documentElement.style.setProperty(`--${name}`, `${timeInSeconds}s`);
 }
+
+const bodyColor = getComputedStyle(document.body).backgroundColor.slice(4, -1);
+const [bR, bG, bB] = bodyColor.split(", ").map(Number);
+const bodyDark = (1 - (0.299 * bR + 0.587 * bG + 0.114 * bB, 16) / 255 < 0.5);
 
 // Установка цветов с различными уровнями прозрачности
 setProperty("hint", "170, 170, 170", "08");
