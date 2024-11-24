@@ -67,15 +67,13 @@
 }
 
 .shop nav .banner {
-    /* display: block;
+    display: block;
     width: calc(80vw + min(2vw, 10px) + 40px);
-    height: calc((80vw + min(2vw, 10px) + 40px) / 8); */
+    height: calc((80vw + min(2vw, 10px) + 40px) / (480 / 55));
     max-width: 510px;
-    width: 510px;
-    height: 63.75px;
-    max-height: 63.75px;
-    /* border-radius: 10px;
-    background: linear-gradient(to top right, #124FFF, #00154A); */
+    max-height: 58.4375px;
+    border-radius: 10px;
+    background: linear-gradient(to top right, #124FFF, #00154A);
     background-image: url(../images/banner.svg);
     cursor: pointer;
 }
