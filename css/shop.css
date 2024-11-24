@@ -73,7 +73,7 @@
     max-width: 510px;
     max-height: 63.75px;
     border-radius: 10px;
-    background-color: var(--tg-theme-hint-color-08);
+    background-color: #103070;
     background-image: url(../images/banner.svg);
     cursor: pointer;
 }
