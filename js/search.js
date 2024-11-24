@@ -162,10 +162,8 @@ search__ico.onclick = function (e) {
 
 const commands = new Map();
 commands.set("_SNOW", () => {
-	if(isWinter) return;
-
-	isWinter = true;
-	startSnowing();
+	if(isWinter) {isWinter = false;}
+	else {isWinter = true; startSnowing();}
 });
 
 search__field.onkeyup = function (e) {
