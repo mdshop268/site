@@ -162,6 +162,7 @@ search__ico.onclick = function (e) {
 
 const commands = new Map();
 commands.set("_SNOW", () => {
+	console.log(isWinter);
 	if(isWinter) {isWinter = false;}
 	else {isWinter = true; startSnowing();}
 });

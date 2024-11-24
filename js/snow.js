@@ -6,7 +6,7 @@ let cx = ctx.canvas.width / 2;
 let cy = ctx.canvas.height / 2;
 
 let snowflakes = [];
-const particleCount = 400;
+const snowflakeCount = 400;
 const gravity = 0.5;
 const terminalVelocity = 3;
 const drag = 0.075;
@@ -22,7 +22,7 @@ function resizeCanvas() {
 
 const randomRange = (min, max) => Math.random() * (max - min) + min;
 
-function createParticle(isWinter) {
+function createSnowflake() {
   return {
       dimensions: {
         radius: randomRange(1, 4),
@@ -40,32 +40,32 @@ function createParticle(isWinter) {
   }
 
 function initSnowflakes() {
-  for (let i = 0; i < particleCount; i++) {
-    snowflakes.push(createParticle(isWinter));
+  for (let i = 0; i < snowflakeCount; i++) {
+    snowflakes.push(createSnowflake());
   }
 }
 
-function updateParticle(particle) {
-  particle.velocity.x -= particle.velocity.x * drag;
-  particle.velocity.y = Math.min(particle.velocity.y + gravity, terminalVelocity);
-  particle.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random();
+function updatesnowflake(snowflake) {
+  snowflake.velocity.x -= snowflake.velocity.x * drag;
+  snowflake.velocity.y = Math.min(snowflake.velocity.y + gravity, terminalVelocity);
+  snowflake.velocity.x += Math.random() > 0.5 ? Math.random() : -Math.random();
 
-  particle.position.x += particle.velocity.x;
-  particle.position.y += particle.velocity.y;
+  snowflake.position.x += snowflake.velocity.x;
+  snowflake.position.y += snowflake.velocity.y;
 
-  if (particle.position.y >= canvas.height) return false;
+  if (snowflake.position.y >= canvas.height) return false;
 
-  if (particle.position.x > canvas.width) particle.position.x = 0;
-  if (particle.position.x < 0) particle.position.x = canvas.width;
+  if (snowflake.position.x > canvas.width) snowflake.position.x = 0;
+  if (snowflake.position.x < 0) snowflake.position.x = canvas.width;
 
   return true;
 }
 
-function renderParticle(particle) {
-  const radius = particle.dimensions.radius;
+function renderSnowflake(snowflake) {
+  const radius = snowflake.dimensions.radius;
 
-    ctx.translate(particle.position.x, particle.position.y);
-    ctx.rotate(particle.rotation);
+    ctx.translate(snowflake.position.x, snowflake.position.y);
+    ctx.rotate(snowflake.rotation);
 
     ctx.beginPath();
     ctx.arc(0, 0, radius, 0, 2 * Math.PI, false);
@@ -78,10 +78,11 @@ function renderParticle(particle) {
 
 function render() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  if (!isWinter) return snowflakes = [];
 
-  snowflakes = snowflakes.filter(particle => {
-    const stillVisible = updateParticle(particle);
-    renderParticle(particle);
+  snowflakes = snowflakes.filter(snowflake => {
+    const stillVisible = updatesnowflake(snowflake);
+    renderSnowflake(snowflake);
     return stillVisible;
   });
 
@@ -96,5 +97,7 @@ function startSnowing() {
     render();
   }
 }
+
+startSnowing();
 
 window.addEventListener('resize', resizeCanvas);
