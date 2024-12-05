@@ -132,33 +132,39 @@ function search(text) {
 }
 
 const names = document.querySelectorAll(".shop .product__name");
-const search__field = document.getElementById("search");
-const search__ico = document.querySelector(".search__ico");
+const searchField = document.getElementById("search");
+const searchIcon = document.querySelector(".search__ico");
 
-let isFocused = false;
+let clickedOnIcon = false;
 
-search__field.onfocus = function () {
-	isFocused = true;
-	search__ico.innerHTML = "close";
-};
+function updateIcon() {
+    if (document.activeElement === searchField) {
+        searchIcon.innerHTML = "close";
+    } else {
+        searchIcon.innerHTML = "search";
+    }
+}
 
-search__field.onblur = function () {
-	isFocused = false;
-	setTimeout(() => {
-		if (!isFocused) {
-			search__ico.innerHTML = "search";
-		}
-	}, 200);
-};
+searchField.addEventListener("focus", updateIcon);
 
-search__ico.onclick = function (e) {
-	e.preventDefault();
-	if (search__ico.innerHTML === "search") {
-		search__field.focus();
-	} else {
-		search__field.blur();
-	}
-};
+searchField.addEventListener("blur", () => {
+    if (!clickedOnIcon) {
+        updateIcon();
+    }
+    clickedOnIcon = false;
+});
+
+searchIcon.addEventListener("mousedown", (e) => {
+    clickedOnIcon = true;
+    e.preventDefault();
+    if (document.activeElement === searchField) {
+        searchField.blur();
+    } else {
+        searchField.focus();
+    }
+});
+
+searchIcon.addEventListener("mouseup", updateIcon);
 
 const commands = new Map();
 commands.set("_SNOW", () => {
