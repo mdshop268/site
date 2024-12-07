@@ -148,9 +148,6 @@ function updateIcon() {
 searchField.addEventListener("focus", updateIcon);
 
 searchField.addEventListener("blur", () => {
-    if (!clickedOnIcon) {
-        updateIcon();
-    }
     clickedOnIcon = false;
 	updateIcon();
 });
