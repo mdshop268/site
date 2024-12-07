@@ -152,6 +152,7 @@ searchField.addEventListener("blur", () => {
         updateIcon();
     }
     clickedOnIcon = false;
+	updateIcon();
 });
 
 searchIcon.addEventListener("mousedown", (e) => {
