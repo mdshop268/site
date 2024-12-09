@@ -1,6 +1,7 @@
 // Генерация HTML-кода для продукта
 const generateProductHTML = (id, name, term, price, realprice) => {
-    const fileName = name.toLowerCase().replace(/ /g, "_");
+    const fileName = name.toLowerCase()
+        .replace(/ /g, "_");
     return `
 <div class="product" id="${id}">
     <div class="wrap">
@@ -31,12 +32,12 @@ const updateProductPrice = (product, term, count = 1) => {
     const priceElement = product.querySelector('.product__price');
     const realPriceElement = product.querySelector('.product__realprice');
     const productId = product.id + term;
-
-    if (priceElement) {
+    
+    if(priceElement) {
         priceElement.textContent = PRICES[productId].price * count + '₴';
     }
-
-    if (realPriceElement) {
+    
+    if(realPriceElement) {
         realPriceElement.textContent = PRICES[productId].realprice * count + '₴';
     }
 };
@@ -50,15 +51,17 @@ const changeOption = (e) => {
     const productId = product.id + term;
     const count = (products.get(productId) || 0);
     updateProductPrice(product, term, count ? count : 1);
-
-    if (counter.style.display === "none" && count) {
+    
+    if(counter.style.display === "none" && count) {
         append.style.display = "none";
         counter.style.display = "flex";
     } else {
-        if (count) {
-            counter.querySelector(".counter__count").innerHTML = count;
+        if(count) {
+            counter.querySelector(".counter__count")
+                .innerHTML = count;
         } else {
-            counter.querySelector(".counter__count").innerHTML = 1;
+            counter.querySelector(".counter__count")
+                .innerHTML = 1;
             append.style.display = "inline-flex";
             counter.style.display = "none";
         }
@@ -67,82 +70,109 @@ const changeOption = (e) => {
 
 // Добавление продукта в корзину
 const shopAddProduct = (e) => {
-    setTimeout(() => {}, animation);
-
     const product = e.currentTarget.closest('.product');
-    const cartProductList = document.querySelector(".cart .product__list");
-    const productTerm = product.querySelector(".product__term");
-    const term = productTerm.selectedOptions[0].innerHTML;
-    const productId = product.id + productTerm.value;
-    const count = (products.get(productId) || 0) + 1;
-
-    // Обновление количества продукта в корзине
-    products.set(productId, count);
-
-    if (count === 1) {
-        cartProductList.innerHTML += generateProductHTML(productId, product.id, term, PRICES[productId].price, PRICES[productId].realprice);
-        e.currentTarget.style.display = "none";
-        product.querySelector(".counter").style.display = "flex";
+    setTimeout(() => {
+        const cartProductList = document.querySelector(".cart .product__list");
+        const productTerm = product.querySelector(".product__term");
+        const term = productTerm.selectedOptions[0].innerHTML;
+        const productId = product.id + productTerm.value;
+        const count = (products.get(productId) || 0) + 1;
         
-        if (!tg.MainButton.isVisible) tg.MainButton.show();
-    } else {
-        const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
-
-        product.querySelector(".counter__count").innerHTML = count;
-        product.querySelector(".product__price").innerHTML = parseFloat((PRICES[productId].price * count).toFixed(1)) + "₴";
-        product.querySelector(".product__realprice").innerHTML = parseFloat((PRICES[productId].realprice * count).toFixed(1)) + "₴";
-
-        cartItem.querySelector(".counter__count").innerHTML = count;
-        cartItem.querySelector(".product__price").innerHTML = parseFloat((PRICES[productId].price * count).toFixed(1)) + "₴";
-        cartItem.querySelector(".product__realprice").innerHTML = parseFloat((PRICES[productId].realprice * count).toFixed(1)) + "₴";
-    }
-
-    tg.MainButton.setText(`КОШИК (${products.size})`);
-    tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {if(error) console.log("!!!ERROR!!!\n" + error)});
+        // Обновление количества продукта в корзине
+        products.set(productId, count);
+        
+        if(count === 1) {
+            cartProductList.innerHTML += generateProductHTML(productId, product.id, term, PRICES[productId].price, PRICES[productId].realprice);
+            e.currentTarget.style.display = "none";
+            product.querySelector(".counter")
+                .style.display = "flex";
+            
+            if(!tg.MainButton.isVisible) tg.MainButton.show();
+        } else {
+            const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
+            
+            product.querySelector(".counter__count")
+                .innerHTML = count;
+            product.querySelector(".product__price")
+                .innerHTML = parseFloat((PRICES[productId].price * count)
+                    .toFixed(1)) + "₴";
+            product.querySelector(".product__realprice")
+                .innerHTML = parseFloat((PRICES[productId].realprice * count)
+                    .toFixed(1)) + "₴";
+            
+            cartItem.querySelector(".counter__count")
+                .innerHTML = count;
+            cartItem.querySelector(".product__price")
+                .innerHTML = parseFloat((PRICES[productId].price * count)
+                    .toFixed(1)) + "₴";
+            cartItem.querySelector(".product__realprice")
+                .innerHTML = parseFloat((PRICES[productId].realprice * count)
+                    .toFixed(1)) + "₴";
+        }
+        
+        tg.MainButton.setText(`КОШИК (${products.size})`);
+        tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => { if(error) console.log("!!!ERROR!!!\n" + error) });
+    }, animation);
 };
 
 const shopRemoveProduct = (e) => {
-    setTimeout(() => {}, animation);
-
-    const product = e.currentTarget.closest('.product');
-    const productTerm = product.querySelector(".product__term");
-    const productId = product.id + productTerm.value;
-    const count = (products.get(productId) || 0) - 1;
-    const cartProductList = document.querySelector(".cart .product__list");
-    const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
-
-    // Обновление количества продукта в корзине
-    if(!count) products.delete(productId);
-    else products.set(productId, count);
-
-    if (count === 0) {
-        cartItem.remove();
-
-        product.querySelector(".append").style.display = "inline-flex";
-        product.querySelector(".counter").style.display = "none";
-    } else {
-        product.querySelector(".counter__count").innerHTML = count;
-        product.querySelector(".product__price").innerHTML = parseFloat((PRICES[productId].price * count).toFixed(1)) + "₴";
-        product.querySelector(".product__realprice").innerHTML = parseFloat((PRICES[productId].realprice * count).toFixed(1)) + "₴";
-
-        cartItem.querySelector(".counter__count").innerHTML = count;
-        cartItem.querySelector(".product__price").innerHTML = parseFloat((PRICES[productId].price * count).toFixed(1)) + "₴";
-        cartItem.querySelector(".product__realprice").innerHTML = PparseFloat((PRICES[productId].realprice * count).toFixed(1)) + "₴";
-    }
-
-    if (products.size) tg.MainButton.setText(`КОШИК (${products.size})`);
-    else tg.MainButton.hide();
-    tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {if(error) console.log("!!!ERROR!!!\n" + error)});
+    setTimeout(() => {
+        
+        const product = e.currentTarget.closest('.product');
+        const productTerm = product.querySelector(".product__term");
+        const productId = product.id + productTerm.value;
+        const count = (products.get(productId) || 0) - 1;
+        const cartProductList = document.querySelector(".cart .product__list");
+        const cartItem = cartProductList.querySelector(`[id="${productId}"]`);
+        
+        // Обновление количества продукта в корзине
+        if(!count) products.delete(productId);
+        else products.set(productId, count);
+        
+        if(count === 0) {
+            cartItem.remove();
+            
+            product.querySelector(".append")
+                .style.display = "inline-flex";
+            product.querySelector(".counter")
+                .style.display = "none";
+        } else {
+            product.querySelector(".counter__count")
+                .innerHTML = count;
+            product.querySelector(".product__price")
+                .innerHTML = parseFloat((PRICES[productId].price * count)
+                    .toFixed(1)) + "₴";
+            product.querySelector(".product__realprice")
+                .innerHTML = parseFloat((PRICES[productId].realprice * count)
+                    .toFixed(1)) + "₴";
+            
+            cartItem.querySelector(".counter__count")
+                .innerHTML = count;
+            cartItem.querySelector(".product__price")
+                .innerHTML = parseFloat((PRICES[productId].price * count)
+                    .toFixed(1)) + "₴";
+            cartItem.querySelector(".product__realprice")
+                .innerHTML = PparseFloat((PRICES[productId].realprice * count)
+                    .toFixed(1)) + "₴";
+        }
+        
+        if(products.size) tg.MainButton.setText(`КОШИК (${products.size})`);
+        else tg.MainButton.hide();
+        tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => { if(error) console.log("!!!ERROR!!!\n" + error) });
+    }, animation);
 };
 
 // Установка обработчиков событий для изменения опций и добавления в корзину
-document.querySelectorAll(".product__term").forEach(selector => {
-    selector.addEventListener('change', changeOption);
-});
+document.querySelectorAll(".product__term")
+    .forEach(selector => {
+        selector.addEventListener('change', changeOption);
+    });
 
-document.querySelectorAll(".shop .append, .shop .add").forEach(button => {
-    button.addEventListener("click", shopAddProduct);
-});
-document.querySelectorAll(".shop .remove").forEach(button => {
-    button.addEventListener("click", shopRemoveProduct);
-});
+document.querySelectorAll(".shop .append, .shop .add")
+    .forEach(button => {
+        button.addEventListener("click", shopAddProduct);
+    });
+document.querySelectorAll(".shop .remove")
+    .forEach(button => {
+        button.addEventListener("click", shopRemoveProduct);
+    });
