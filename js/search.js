@@ -171,8 +171,8 @@ commands.set("_SNOW", () => {
 	else {isWinter = true; startSnowing();}
 });
 
-search__field.onkeyup = function (e) {
-	const text = search__field.value;
+searchField.onkeyup = function (e) {
+	const text = searchField.value;
 
 	if(e.key === "Enter" && commands.get(text)) {
 		commands.get(text)();
