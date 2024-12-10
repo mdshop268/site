@@ -44,9 +44,9 @@ const clearCart = () => {
 };
 
 const cartAddProduct = (e) => {
-    setTimeout(() => {
-        
-        const product = e.currentTarget.closest('.product');
+    const product = e.currentTarget.closest('.product');
+    
+    setTimeout(() => {   
         const shopProductList = document.querySelector(".shop .product__list");
         const shopItem = shopProductList.querySelector(`[id="${product.id.replace(/[0-9]/g, '')}"]`);
         const count = (products.get(product.id) || 0) + 1;
@@ -76,9 +76,9 @@ const cartAddProduct = (e) => {
 };
 
 const cartRemoveProduct = (e) => {
-    setTimeout(() => {
-        
-        const product = e.currentTarget.closest('.product');
+    const product = e.currentTarget.closest('.product');
+    
+    setTimeout(() => {    
         const shopProductList = document.querySelector(".shop .product__list");
         const shopItem = shopProductList.querySelector(`[id="${product.id.replace(/[0-9]/g, '')}"]`);
         const count = (products.get(product.id) || 0) - 1;

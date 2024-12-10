@@ -71,6 +71,8 @@ const changeOption = (e) => {
 // Добавление продукта в корзину
 const shopAddProduct = (e) => {
     const product = e.currentTarget.closest('.product');
+    const button = e.currentTarget;
+    
     setTimeout(() => {
         const cartProductList = document.querySelector(".cart .product__list");
         const productTerm = product.querySelector(".product__term");
@@ -83,7 +85,7 @@ const shopAddProduct = (e) => {
         
         if(count === 1) {
             cartProductList.innerHTML += generateProductHTML(productId, product.id, term, PRICES[productId].price, PRICES[productId].realprice);
-            e.currentTarget.style.display = "none";
+            button.style.display = "none";
             product.querySelector(".counter")
                 .style.display = "flex";
             
@@ -116,9 +118,9 @@ const shopAddProduct = (e) => {
 };
 
 const shopRemoveProduct = (e) => {
+    const product = e.currentTarget.closest('.product');
+
     setTimeout(() => {
-        
-        const product = e.currentTarget.closest('.product');
         const productTerm = product.querySelector(".product__term");
         const productId = product.id + productTerm.value;
         const count = (products.get(productId) || 0) - 1;
