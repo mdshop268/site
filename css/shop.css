@@ -80,10 +80,6 @@
 }
 
 .shop .banner:hover {
-    opacity: .95;
-}
-
-.shop .banner:active {
     opacity: .9;
 }
 
