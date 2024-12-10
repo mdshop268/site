@@ -72,7 +72,7 @@ const cartAddProduct = (e) => {
         tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {
             if(error) console.log("!!!ERROR!!!\n" + error)
         });
-    }, animation);
+    }, 0);
 };
 
 const cartRemoveProduct = (e) => {
@@ -116,5 +116,5 @@ const cartRemoveProduct = (e) => {
         tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => {
             if(error) console.log("!!!ERROR!!!\n" + error)
         });
-    }, animation);
+    }, 0);
 };
