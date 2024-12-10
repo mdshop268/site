@@ -114,7 +114,7 @@ const shopAddProduct = (e) => {
         
         tg.MainButton.setText(`КОШИК (${products.size})`);
         tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => { if(error) console.log("!!!ERROR!!!\n" + error) });
-    }, 0);
+    }, animation / 2);
 };
 
 const shopRemoveProduct = (e) => {
@@ -161,7 +161,7 @@ const shopRemoveProduct = (e) => {
         if(products.size) tg.MainButton.setText(`КОШИК (${products.size})`);
         else tg.MainButton.hide();
         tg.CloudStorage.setItem("cart", JSON.stringify(Array.from(products.entries())), (error, value) => { if(error) console.log("!!!ERROR!!!\n" + error) });
-    }, 0);
+    }, animation / 2);
 };
 
 // Установка обработчиков событий для изменения опций и добавления в корзину
