@@ -69,8 +69,10 @@ window.onload = function () {
 const handleBackButtonClick = () => {
     const shop = document.querySelector(".shop");
     const cart = document.querySelector(".cart");
+    const settings = document.querySelector(".settings");
+    const from = (cart.style.display === "block") ? cart : settings;
 
-    toggleDisplay(shop, cart, true);
+    toggleDisplay(shop, from, true);
 
     tg.BackButton.hide();
     tg.MainButton.setText(`КОШИК (${products.size})`);
@@ -140,6 +142,14 @@ const handleMainButtonClick = () => {
     }
 };
 
+const handleSettingsButtonClick = () => {
+    const shop = document.querySelector(".shop");
+    const settings = document.querySelector(".settings");
+
+    toggleDisplay(settings, shop, true);
+}
+
 // Установка обработчиков событий
 tg.BackButton.onClick(handleBackButtonClick);
 tg.MainButton.onClick(handleMainButtonClick);
+document.querySelector(".settings__button").addEventListener("click", handleSettingsButtonClick);
