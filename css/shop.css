@@ -45,13 +45,16 @@
     font-weight: 500;
 }
 
-.settings__button {
+.promo__button {
     background-color: var(--tg-theme-hint-color-08);
-    color: var(--tg-theme-text-color, #757577);
     width: 40px;
     height: 40px;
     border: none;
     border-radius: 12px;
+}
+
+.promo__ico {
+    color: var(--tg-theme-button-color, #4090e6);
 }
 
 .shop nav {

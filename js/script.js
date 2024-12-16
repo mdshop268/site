@@ -152,4 +152,4 @@ const handleSettingsButtonClick = () => {
 // Установка обработчиков событий
 tg.BackButton.onClick(handleBackButtonClick);
 tg.MainButton.onClick(handleMainButtonClick);
-document.querySelector(".settings__button").addEventListener("click", handleSettingsButtonClick);
+document.querySelector(".promo__button").addEventListener("click", handleSettingsButtonClick);
