@@ -19,7 +19,7 @@
     box-shadow: 0 0 0 2px var(--tg-theme-button-color, #4090e6);
 }
 
-.search:focus-within .search::placeholder {
+.search:focus-within .search__field::placeholder {
     color: transparent;
 }
 
