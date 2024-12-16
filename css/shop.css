@@ -47,20 +47,11 @@
 
 .settings__button {
     background-color: var(--tg-theme-hint-color-08);
+    color: var(--tg-theme-text-color, #757577);
     width: 40px;
     height: 40px;
     border: none;
     border-radius: 12px;
-}
-
-.settings__ico {
-    width: 60%;
-    height: 60%;
-    vertical-align: middle;
-}
-
-.settings__ico .primary-color {
-    fill: var(--tg-theme-button-color, #4090e6);
 }
 
 .shop nav {

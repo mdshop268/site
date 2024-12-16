@@ -166,9 +166,13 @@ searchIcon.addEventListener("mouseup", updateIcon);
 
 const commands = new Map();
 commands.set("_SNOW", () => {
-	console.log(isWinter);
 	if(isWinter) {isWinter = false;}
 	else {isWinter = true; startSnowing();}
+});
+commands.set("_SETTINGS", () => {
+	let settings = document.querySelector(".settings__button");
+
+	settings.innerHTML = (settings.innerHTML === "confirmation_number") ? "key" : "confirmation_number";
 });
 
 searchField.onkeyup = function (e) {
