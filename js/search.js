@@ -169,7 +169,7 @@ commands.set("_SNOW", () => {
 	if(isWinter) {isWinter = false;}
 	else {isWinter = true; startSnowing();}
 });
-commands.set("_SETTINGS", () => {
+commands.set("_ICO", () => {
 	let settings = document.querySelector(".promo__ico");
 
 	settings.innerHTML = (settings.innerHTML === "confirmation_number") ? "key" : "confirmation_number";
