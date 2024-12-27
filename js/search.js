@@ -139,9 +139,11 @@ let clickedOnIcon = false;
 
 function updateIcon() {
     if (document.activeElement === searchField) {
-        searchIcon.innerHTML = "close";
+		searchIcon.innerHTML = "close";
+		searchIcon.setAttribute("title", "Закрити");
     } else {
-        searchIcon.innerHTML = "search";
+		searchIcon.innerHTML = "search";
+		searchIcon.setAttribute("title", "Пошук");
     }
 }
 
